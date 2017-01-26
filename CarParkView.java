@@ -28,7 +28,7 @@ class CarParkView extends JPanel {
     }
 
     /**
-     * Overriden. The car park view component needs to be redisplayed. Copy the
+     * Overridden. The car park view component needs to be redisplayed. Copy the
      * internal image to screen.
      */
     public void paintComponent(Graphics g) {
