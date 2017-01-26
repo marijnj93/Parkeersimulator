@@ -4,7 +4,8 @@ import javax.swing.*;
 import java.awt.*;
 
 public class SimulatorView extends JFrame {
-    private CarParkView carParkView;
+    //Carpark is public zodat de buttons gechecked kunnen worden... Niet netjes, nog oplossen.
+    public CarParkView carParkView;
     private int numberOfFloors;
     private int numberOfRows;
     private int numberOfPlaces;

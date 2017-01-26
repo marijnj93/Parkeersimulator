@@ -2,6 +2,8 @@ package Parkeersimulator;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 /**
  * Created by Marijn on 26-1-2017.
@@ -11,6 +13,8 @@ class CarParkView extends JPanel {
     private SimulatorView simulatorView;
     private Dimension size;
     private Image carParkImage;
+    private Boolean clicked_advance10 = true;
+    private Boolean clicked_advance100 = true;
 
     /**
      * Constructor for objects of class CarPark
@@ -18,6 +22,22 @@ class CarParkView extends JPanel {
     public CarParkView(SimulatorView simulatorView) {
         this.simulatorView = simulatorView;
         size = new Dimension(0, 0);
+        JButton btn_advance10 = new JButton("Advance 10");
+        JButton btn_advance100 = new JButton("Advance 100");
+        add(btn_advance10);
+        add(btn_advance100);
+        btn_advance10.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                clicked_advance10 = true;
+            }
+        });
+        btn_advance100.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                clicked_advance100 = true;
+            }
+        });
     }
 
     /**
@@ -75,5 +95,15 @@ class CarParkView extends JPanel {
                 60 + location.getPlace() * 10,
                 20 - 1,
                 10 - 1); // TODO use dynamic size or constants
+    }
+    public Boolean checkAdvance_10() {
+        Boolean r = clicked_advance10;
+        clicked_advance10 = false;
+        return r;
+    }
+    public Boolean checkAdvance_100() {
+        Boolean r = clicked_advance100;
+        clicked_advance100 = false;
+        return r;
     }
 }
