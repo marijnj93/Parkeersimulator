@@ -8,6 +8,9 @@ public class Location {
 
     /**
      * Constructor for objects of class Location
+     * @param floor The floor of a location.
+     * @param row The row of a location.
+     * @param place The place of a location.
      */
     public Location(int floor, int row, int place) {
         this.floor = floor;
@@ -17,6 +20,8 @@ public class Location {
 
     /**
      * Implement content equality.
+     * @param obj Object.
+     * @return boolean
      */
     public boolean equals(Object obj) {
         if(obj instanceof Location) {
@@ -47,21 +52,21 @@ public class Location {
     }
 
     /**
-     * @return The floor.
+     * @return floor, The floor of a location.
      */
     public int getFloor() {
         return floor;
     }
 
     /**
-     * @return The row.
+     * @return row, The row of a location.
      */
     public int getRow() {
         return row;
     }
 
     /**
-     * @return The place.
+     * @return place, The place of a location.
      */
     public int getPlace() {
         return place;

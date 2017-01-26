@@ -12,6 +12,12 @@ public class SimulatorView extends JFrame {
     private int numberOfOpenSpots;
     private Car[][][] cars;
 
+    /**
+     *
+     * @param numberOfFloors, The number of floors.
+     * @param numberOfRows, the number of rows.
+     * @param numberOfPlaces, the number of places.
+     */
     public SimulatorView(int numberOfFloors, int numberOfRows, int numberOfPlaces) {
         this.numberOfFloors = numberOfFloors;
         this.numberOfRows = numberOfRows;
@@ -32,23 +38,44 @@ public class SimulatorView extends JFrame {
     public void updateView() {
         carParkView.updateView();
     }
-    
+
+    /**
+     *
+     * @return numberOfFloors, The number of floors.
+     */
 	public int getNumberOfFloors() {
         return numberOfFloors;
     }
 
+    /**
+     *
+     * @return numberOfRows, The number of rows.
+     */
     public int getNumberOfRows() {
         return numberOfRows;
     }
 
+    /**
+     *
+     * @return numberOfPlaces, The number of places.
+     */
     public int getNumberOfPlaces() {
         return numberOfPlaces;
     }
 
+    /**
+     *
+     * @return numberOfOpenSpots, The number of open spots.
+     */
     public int getNumberOfOpenSpots(){
     	return numberOfOpenSpots;
     }
-    
+
+    /**
+     *
+     * @param location, the location of a car.
+     * @return cars, with the floor, row and place
+     */
     public Car getCarAt(Location location) {
         if (!locationIsValid(location)) {
             return null;
@@ -56,6 +83,12 @@ public class SimulatorView extends JFrame {
         return cars[location.getFloor()][location.getRow()][location.getPlace()];
     }
 
+    /**
+     *
+     * @param location, A location to set a car.
+     * @param car, A car.
+     * @return boolean
+     */
     public boolean setCarAt(Location location, Car car) {
         if (!locationIsValid(location)) {
             return false;
@@ -70,6 +103,11 @@ public class SimulatorView extends JFrame {
         return false;
     }
 
+    /**
+     *
+     * @param location, A location to remove a car.
+     * @return car, a car.
+     */
     public Car removeCarAt(Location location) {
         if (!locationIsValid(location)) {
             return null;
@@ -84,6 +122,10 @@ public class SimulatorView extends JFrame {
         return car;
     }
 
+    /**
+     *
+     * @return location, The first location that is free.
+     */
     public Location getFirstFreeLocation() {
         for (int floor = 0; floor < getNumberOfFloors(); floor++) {
             for (int row = 0; row < getNumberOfRows(); row++) {
@@ -98,6 +140,10 @@ public class SimulatorView extends JFrame {
         return null;
     }
 
+    /**
+     *
+     * @return car
+     */
     public Car getFirstLeavingCar() {
         for (int floor = 0; floor < getNumberOfFloors(); floor++) {
             for (int row = 0; row < getNumberOfRows(); row++) {
@@ -127,6 +173,11 @@ public class SimulatorView extends JFrame {
         }
     }
 
+    /**
+     *
+     * @param location, A valid location.
+     * @return boolean
+     */
     private boolean locationIsValid(Location location) {
         int floor = location.getFloor();
         int row = location.getRow();

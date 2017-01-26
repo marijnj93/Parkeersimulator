@@ -12,7 +12,11 @@ public class ParkingPassCar extends Car {
         this.setMinutesLeft(stayMinutes);
         this.setHasToPay(false);
     }
-    
+
+    /**
+     *
+     * @return COLOR.
+     */
     public Color getColor(){
     	return COLOR;
     }
