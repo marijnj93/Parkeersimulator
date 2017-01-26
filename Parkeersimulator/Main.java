@@ -5,9 +5,8 @@ package Parkeersimulator;
  * This class is used to start the program.
  */
 public class Main {
-static Simulator sim;
     public static void main(String[] args) {
-        sim = new Simulator();
+        Simulator sim = new Simulator();
         sim.run();
     }
 }
