@@ -114,6 +114,10 @@ public class Simulator {
         addArrivingCars(numberOfCars, PASS);    	
     }
 
+    /**
+     *
+     * @param queue a queue for cars.
+     */
     private void carsEntering(CarQueue queue){
         int i=0;
         // Remove car from the front of the queue and assign to a parking space.
@@ -161,7 +165,13 @@ public class Simulator {
             i++;
     	}	
     }
-    
+
+    /**
+     *
+     * @param weekDay
+     * @param weekend
+     * @return The number of cars per hour / 60
+     */
     private int getNumberOfCars(int weekDay, int weekend){
         Random random = new Random();
 
@@ -175,7 +185,12 @@ public class Simulator {
         double numberOfCarsPerHour = averageNumberOfCarsPerHour + random.nextGaussian() * standardDeviation;
         return (int)Math.round(numberOfCarsPerHour / 60);	
     }
-    
+
+    /**
+     *
+     * @param numberOfCars the number of cars
+     * @param type the type of the car (normal car, or a car with a pass.
+     */
     private void addArrivingCars(int numberOfCars, String type){
         // Add the cars to the back of the queue.
     	switch(type) {
@@ -191,7 +206,11 @@ public class Simulator {
             break;	            
     	}
     }
-    
+
+    /**
+     *
+     * @param car, a car.
+     */
     private void carLeavesSpot(Car car){
     	simulatorView.removeCarAt(car.getLocation());
         exitCarQueue.addCar(car);

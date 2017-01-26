@@ -18,6 +18,7 @@ class CarParkView extends JPanel {
 
     /**
      * Constructor for objects of class CarPark
+     * @param simulatorView A simulatorView.
      */
     public CarParkView(SimulatorView simulatorView) {
         this.simulatorView = simulatorView;
@@ -42,6 +43,7 @@ class CarParkView extends JPanel {
 
     /**
      * Overridden. Tell the GUI manager how big we would like to be.
+     * @return The dimension of the GUI
      */
     public Dimension getPreferredSize() {
         return new Dimension(800, 500);
@@ -50,6 +52,7 @@ class CarParkView extends JPanel {
     /**
      * Overridden. The car park view component needs to be redisplayed. Copy the
      * internal image to screen.
+     * @param g
      */
     public void paintComponent(Graphics g) {
         if (carParkImage == null) {
@@ -87,6 +90,9 @@ class CarParkView extends JPanel {
 
     /**
      * Paint a place on this car park view in a given color.
+     * @param graphics,
+     * @param location, The location to paint at.
+     * @param color, The color that is used.
      */
     private void drawPlace(Graphics graphics, Location location, Color color) {
         graphics.setColor(color);
@@ -96,11 +102,21 @@ class CarParkView extends JPanel {
                 20 - 1,
                 10 - 1); // TODO use dynamic size or constants
     }
+
+    /**
+     *
+     * @return r
+     */
     public Boolean checkAdvance_10() {
         Boolean r = clicked_advance10;
         clicked_advance10 = false;
         return r;
     }
+
+    /**
+     *
+     * @return r
+     */
     public Boolean checkAdvance_100() {
         Boolean r = clicked_advance100;
         clicked_advance100 = false;
