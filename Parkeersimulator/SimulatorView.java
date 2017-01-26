@@ -3,6 +3,11 @@ package Parkeersimulator;
 import javax.swing.*;
 import java.awt.*;
 
+/**
+ *
+ * @author Marijn, Mark, Vincent, Bart,
+ * @since 26-01-2017
+ */
 public class SimulatorView extends JFrame {
     //Carpark is public zodat de buttons gechecked kunnen worden... Niet netjes, nog oplossen.
     public CarParkView carParkView;

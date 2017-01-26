@@ -2,6 +2,12 @@ package Parkeersimulator;
 import java.util.LinkedList;
 import java.util.Queue;
 
+/**
+ *
+ * @author Marijn, Mark, Vincent, Bart,
+ * @since 26-01-2017
+ *
+ */
 public class CarQueue {
     private Queue<Car> queue = new LinkedList<>();
 

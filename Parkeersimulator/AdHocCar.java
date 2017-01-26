@@ -3,6 +3,11 @@ package Parkeersimulator;
 import java.util.Random;
 import java.awt.*;
 
+/**
+ *
+ * @author Marijn, Mark, Vincent, Bart,
+ * @since 26-01-2017
+ */
 public class AdHocCar extends Car {
 	private static final Color COLOR=Color.red;
 	

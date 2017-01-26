@@ -1,5 +1,10 @@
 package Parkeersimulator;
 
+/**
+ *
+ * @author Marijn, Mark, Vincent, Bart,
+ * @since 26-01-2017
+ */
 public class Location {
 
     private int floor;

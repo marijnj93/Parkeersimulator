@@ -2,6 +2,11 @@ package Parkeersimulator;
 
 import java.util.Random;
 
+/**
+ *
+ * @author Marijn, Mark, Vincent, Bart,
+ * @since 26-01-2017
+ */
 public class Simulator {
 
 	private static final String AD_HOC = "1";

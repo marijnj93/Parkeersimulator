@@ -6,7 +6,9 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 /**
- * Created by Marijn on 26-1-2017.
+ *
+ * @author Marijn, Mark, Vincent, Bart,
+ * @since 26-01-2017
  */
 class CarParkView extends JPanel {
 
