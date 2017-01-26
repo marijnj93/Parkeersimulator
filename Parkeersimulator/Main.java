@@ -1,10 +1,11 @@
 package Parkeersimulator;
 /**
- * Created by Mark on 20-1-2017.
+ * Created by Marijn on 20-1-2017.
  */
 public class Main {
+static Simulator sim;
     public static void main(String[] args) {
-        Simulator sim = new Simulator();
+        sim = new Simulator();
         sim.run();
     }
 }
