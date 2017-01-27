@@ -16,7 +16,7 @@ public class Controller extends JPanel implements ActionListener{
     private JButton btn_changeView;
     private Parkeergarage parkeergarage;
 
-    private Boolean advance10 = false;
+    private Boolean runWorkerRunning = false;
 
     public Controller(Simulator simulator, Parkeergarage parkeergarage)  {
         this.simulator = simulator;
@@ -31,29 +31,23 @@ public class Controller extends JPanel implements ActionListener{
         add(btn_advance10);
         add(btn_advance100);
         add(btn_changeView);
-
-
-        /*btn_advance10.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                //Stel in dat de Simulator 10 ticks vooruitgaat.
-                advance10 = true;
-                simulator.run(10);
-                System.out.println("Advance 10");
-            }
-        });*/
     }
+
     @Override
     public void actionPerformed(ActionEvent e) {
-        if (e.getSource() == btn_advance10) {
-            new RunWorker(simulator, 10).execute();
+        if (e.getSource() == btn_advance10 && runWorkerRunning == false) {
+            new RunWorker(simulator, 10, this).execute();
         }
-        if (e.getSource() == btn_advance100) {
-            new RunWorker(simulator, 100).execute();
+        if (e.getSource() == btn_advance100 && runWorkerRunning == false) {
+            new RunWorker(simulator, 100, this).execute();
         }
         if (e.getSource() == btn_changeView) {
             parkeergarage.changeView();
         }
+    }
+
+    public void setWorkerRunning(Boolean bool) {
+        runWorkerRunning = bool;
     }
 }
 
@@ -65,18 +59,23 @@ class RunWorker extends SwingWorker<Void, Void>
 {
     private Simulator simulator;
     private int steps = 0;
-    public RunWorker(Simulator simulator, int steps) {
+    private Controller controller;
+
+    public RunWorker(Simulator simulator, int steps, Controller controller) {
      this.simulator = simulator;
      this.steps = steps;
+     this.controller = controller;
     }
     @Override
     protected Void doInBackground() throws Exception
     {
+        controller.setWorkerRunning(true);
         simulator.run(steps);
         return null;
     }
 
     protected void done()
     {
+        controller.setWorkerRunning(false);
     }
 }

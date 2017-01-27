@@ -25,6 +25,7 @@ public class CarParkView extends View {
     public CarParkView(SimulatorView simulatorView) {
         super(simulatorView, "CarParkView");
         size = new Dimension(0, 0);
+        setBackground(Color.red);
     }
 
     /**

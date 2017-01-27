@@ -1,5 +1,6 @@
 package Parkeersimulator.model;
 
+import java.awt.*;
 import java.util.Random;
 
 /**
@@ -115,13 +116,23 @@ public class Simulator {
     private void carsEntering(CarQueue queue){
         int i=0;
         // Remove car from the front of the queue and assign to a parking space.
+        //Reserveert, maar logica car uit queu halen niet helemaal perfect.
     	while (queue.carsInQueue()>0 && 
     			simulatorView.getNumberOfOpenSpots()>0 && 
     			i<enterSpeed) {
-            Car car = queue.removeCar();
             Location freeLocation = simulatorView.getFirstFreeLocation();
-            simulatorView.setCarAt(freeLocation, car);
+            Car car = queue.removeCar();
+            if (freeLocation.reserved() && car.getColor() == Color.blue) {
+                simulatorView.setCarAt(freeLocation, car);
+            }
+            else if (freeLocation.reserved()) {
+                queue.addCar(car);
+            }
+            else {
+                simulatorView.setCarAt(freeLocation, car);
+            }
             i++;
+
         }
     }
     
