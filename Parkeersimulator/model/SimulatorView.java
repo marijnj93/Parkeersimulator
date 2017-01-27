@@ -1,4 +1,8 @@
-package Parkeersimulator;
+package Parkeersimulator.model;
+
+import Parkeersimulator.view.*;
+import Parkeersimulator.model.Car;
+import Parkeersimulator.model.Location;
 
 import javax.swing.*;
 import java.awt.*;
@@ -9,7 +13,7 @@ import java.awt.*;
  * @since 26-01-2017
  */
 public class SimulatorView extends JFrame {
-    private CarParkView carParkView;
+    private View view;
     private int numberOfFloors;
     private int numberOfRows;
     private int numberOfPlaces;
@@ -29,7 +33,7 @@ public class SimulatorView extends JFrame {
         this.numberOfOpenSpots =numberOfFloors*numberOfRows*numberOfPlaces;
         cars = new Car[numberOfFloors][numberOfRows][numberOfPlaces];
         
-        carParkView = new CarParkView(this);
+/*        carParkView = new CarParkView(this);
 
         Container contentPane = getContentPane();
         contentPane.add(carParkView, BorderLayout.CENTER);
@@ -37,10 +41,13 @@ public class SimulatorView extends JFrame {
         setVisible(true);
 
         updateView();
+        */
     }
-
+    public void setView(View view) {
+        this.view = view;
+    }
     public void updateView() {
-        carParkView.updateView();
+        view.updateView();
     }
 
     /**

@@ -1,18 +1,19 @@
-package Parkeersimulator;
+package Parkeersimulator.view;
+
+import Parkeersimulator.model.Car;
+import Parkeersimulator.model.Location;
+import Parkeersimulator.model.SimulatorView;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
 /**
  *
  * @author Marijn, Mark, Vincent, Bart,
  * @since 26-01-2017
  */
-class CarParkView extends JPanel {
+public class CarParkView extends View {
 
-    private SimulatorView simulatorView;
     private Dimension size;
     private Image carParkImage;
 
@@ -22,7 +23,7 @@ class CarParkView extends JPanel {
      * @param simulatorView A simulatorView.
      */
     public CarParkView(SimulatorView simulatorView) {
-        this.simulatorView = simulatorView;
+        super(simulatorView);
         size = new Dimension(0, 0);
     }
 

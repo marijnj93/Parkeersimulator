@@ -1,4 +1,7 @@
 package Parkeersimulator;
+
+import Parkeersimulator.model.Simulator;
+
 /**
  * This class is used to start the program.
  *
@@ -7,7 +10,6 @@ package Parkeersimulator;
  */
 public class Main {
     public static void main(String[] args) {
-        Simulator sim = new Simulator();
-        sim.run();
+        Parkeergarage garage = new Parkeergarage();
     }
 }
