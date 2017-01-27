@@ -9,7 +9,7 @@ public class TextView extends View {
 
     private JLabel lbl_OpenSpots;
     public TextView(SimulatorView simulatorView) {
-        super(simulatorView);
+        super(simulatorView, "TextView");
         lbl_OpenSpots = new JLabel("Open spots: " + simulatorView.getNumberOfOpenSpots());
         add(lbl_OpenSpots);
     }

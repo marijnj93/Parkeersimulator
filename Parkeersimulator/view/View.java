@@ -6,8 +6,13 @@ import Parkeersimulator.model.*;
  */
 public abstract class View extends JPanel{
     protected SimulatorView simulatorView;
-    public View(SimulatorView simulatorView) {
+    protected String type;
+    public View(SimulatorView simulatorView, String type) {
         this.simulatorView = simulatorView;
+        this.type = type;
     }
     public abstract void updateView();
+    public String getType() {
+        return type;
+    }
 }

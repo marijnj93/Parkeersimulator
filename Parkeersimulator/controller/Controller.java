@@ -1,6 +1,8 @@
 package Parkeersimulator.controller;
 import javax.swing.*;
 import Parkeersimulator.model.*;
+import Parkeersimulator.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 /**
@@ -12,17 +14,20 @@ public class Controller extends JPanel implements ActionListener{
     private JButton btn_advance10;
     private JButton btn_advance100;
     private JButton btn_changeView;
+    private Parkeergarage parkeergarage;
 
     private Boolean advance10 = false;
 
-    public Controller(Simulator simulator)  {
+    public Controller(Simulator simulator, Parkeergarage parkeergarage)  {
         this.simulator = simulator;
+        this.parkeergarage = parkeergarage;
 
         btn_advance10 = new JButton("Advance 10");
         btn_advance10.addActionListener(this);
         btn_advance100 = new JButton("Advance 100");
         btn_advance100.addActionListener(this);
         btn_changeView = new JButton("Change View");
+        btn_changeView.addActionListener(this);
         add(btn_advance10);
         add(btn_advance100);
         add(btn_changeView);
@@ -45,6 +50,9 @@ public class Controller extends JPanel implements ActionListener{
         }
         if (e.getSource() == btn_advance100) {
             new RunWorker(simulator, 100).execute();
+        }
+        if (e.getSource() == btn_changeView) {
+            parkeergarage.changeView();
         }
     }
 }

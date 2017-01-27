@@ -23,7 +23,7 @@ public class CarParkView extends View {
      * @param simulatorView A simulatorView.
      */
     public CarParkView(SimulatorView simulatorView) {
-        super(simulatorView);
+        super(simulatorView, "CarParkView");
         size = new Dimension(0, 0);
     }
 
