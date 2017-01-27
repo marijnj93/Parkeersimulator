@@ -44,22 +44,7 @@ public class Simulator {
 
     public void run() {
         for (int i = 0; i < 10000; i++) {
-            if (simulatorView.carParkView.checkAdvance_10()) {
-                for (int x = 0; x < 10; x++) {
-                    tick();
-                }
-            }
-            else if (simulatorView.carParkView.checkAdvance_100()) {
-                for (int x = 0; x < 100; x++) {
-                    tick();
-                }
-            }
-            // Pause. << Let op; slaapt nu niet in de Tick thread!!!!
-            try {
-                Thread.sleep(tickPause);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
+                tick();
         }
     }
 
@@ -67,13 +52,13 @@ public class Simulator {
     	advanceTime();
     	handleExit();
     	updateViews();
-    	/* Pause.
+    	// Pause.
         try {
             Thread.sleep(tickPause);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-        */
+
     	handleEntrance();
     }
 

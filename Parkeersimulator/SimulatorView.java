@@ -9,8 +9,7 @@ import java.awt.*;
  * @since 26-01-2017
  */
 public class SimulatorView extends JFrame {
-    //Carpark is public zodat de buttons gechecked kunnen worden... Niet netjes, nog oplossen.
-    public CarParkView carParkView;
+    private CarParkView carParkView;
     private int numberOfFloors;
     private int numberOfRows;
     private int numberOfPlaces;
