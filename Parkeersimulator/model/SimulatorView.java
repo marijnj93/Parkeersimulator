@@ -1,4 +1,8 @@
-package Parkeersimulator;
+package Parkeersimulator.model;
+
+import Parkeersimulator.view.*;
+import Parkeersimulator.model.Car;
+import Parkeersimulator.model.Location;
 
 import javax.swing.*;
 import java.awt.*;
@@ -8,9 +12,8 @@ import java.awt.*;
  * @author Marijn, Mark, Vincent, Bart,
  * @since 26-01-2017
  */
-public class SimulatorView extends JFrame {
-    //Carpark is public zodat de buttons gechecked kunnen worden... Niet netjes, nog oplossen.
-    public CarParkView carParkView;
+public class SimulatorView {
+    private View view;
     private int numberOfFloors;
     private int numberOfRows;
     private int numberOfPlaces;
@@ -29,19 +32,12 @@ public class SimulatorView extends JFrame {
         this.numberOfPlaces = numberOfPlaces;
         this.numberOfOpenSpots =numberOfFloors*numberOfRows*numberOfPlaces;
         cars = new Car[numberOfFloors][numberOfRows][numberOfPlaces];
-        
-        carParkView = new CarParkView(this);
-
-        Container contentPane = getContentPane();
-        contentPane.add(carParkView, BorderLayout.CENTER);
-        pack();
-        setVisible(true);
-
-        updateView();
     }
-
+    public void setView(View view) {
+        this.view = view;
+    }
     public void updateView() {
-        carParkView.updateView();
+        view.updateView();
     }
 
     /**

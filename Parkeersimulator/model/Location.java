@@ -1,4 +1,4 @@
-package Parkeersimulator;
+package Parkeersimulator.model;
 
 /**
  *
@@ -10,7 +10,7 @@ public class Location {
     private int floor;
     private int row;
     private int place;
-
+    private Boolean reserved = false;
     /**
      * Constructor for objects of class Location
      * @param floor The floor of a location.
@@ -21,8 +21,13 @@ public class Location {
         this.floor = floor;
         this.row = row;
         this.place = place;
+        if (row == 2) {
+            reserved = true;
+        }
     }
-
+    public boolean reserved() {
+        return reserved;
+    }
     /**
      * Implement content equality.
      * @param obj Object.
