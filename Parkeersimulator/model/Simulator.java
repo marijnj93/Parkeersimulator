@@ -116,17 +116,26 @@ public class Simulator {
     private void carsEntering(CarQueue queue){
         int i=0;
         // Remove car from the front of the queue and assign to a parking space.
-        //Reserveert, maar logica car uit queu halen niet helemaal perfect.
+        // Houdt rekening met bepaalde plekken die alleen voor abbonomentshouders bedoeld zijn, aan de hand van een boolean in Location.
     	while (queue.carsInQueue()>0 && 
     			simulatorView.getNumberOfOpenSpots()>0 && 
     			i<enterSpeed) {
             Location freeLocation = simulatorView.getFirstFreeLocation();
+            Location freeReservedLocation = simulatorView.getFirstRservedLocation();
             Car car = queue.removeCar();
-            if (freeLocation.reserved() && car.getColor() == Color.blue) {
-                simulatorView.setCarAt(freeLocation, car);
-            }
-            else if (freeLocation.reserved()) {
-                queue.addCar(car);
+            if (car.getColor() == Color.blue) {
+                if (freeLocation.getFloor() < freeReservedLocation.getFloor()) {
+                    simulatorView.setCarAt(freeLocation, car);
+                }
+                else if (freeLocation.getFloor() == freeReservedLocation.getFloor() && freeLocation.getRow() < freeReservedLocation.getRow()) {
+                    simulatorView.setCarAt(freeLocation, car);
+                }
+                else if (freeLocation.getFloor() == freeReservedLocation.getFloor() && freeLocation.getRow() < freeReservedLocation.getRow() && freeLocation.getPlace() < freeReservedLocation.getPlace()) {
+                    simulatorView.setCarAt(freeLocation, car);
+                }
+                else {
+                    simulatorView.setCarAt(freeReservedLocation, car);
+                }
             }
             else {
                 simulatorView.setCarAt(freeLocation, car);
