@@ -20,7 +20,7 @@ public class Parkeergarage {
 
     public Parkeergarage() {
         simulator = new Simulator();
-        view = new BarView(simulator.getSimulatorView());
+        view = new PieView(simulator.getSimulatorView());
         simulator.getSimulatorView().setView(view);
         controller = new Controller(simulator, this);
 

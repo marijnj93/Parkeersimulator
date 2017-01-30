@@ -71,30 +71,33 @@ public class BarView extends View {
 
         public void drawGraph(Graphics g) {
             int baseline = getHeight() - 80;
-            //Scale van 1 is 1 val = 1 pixel.
-            int scale = 1;
+            int scale = getScale();
             int gap = 150;
 
-            if (getHeight() < 400) {
-                scale = 3;
-            }
-            else if (getHeight() < 700) {
-                scale = 2;
-            }
-            else if (getHeight() < 1000 ) {
-                scale = 1;
-            }
-
             for (Bar bar:bars) {
-                drawBar(100 + gap * bars.indexOf(bar), baseline, bar, g, scale);
+                drawBar(100  + gap * bars.indexOf(bar), baseline, bar, g, scale);
             }
 
         }
+    //Scale van 1 is 1 val = 1 pixel.
+        public int getScale() {
+            int scale = 1;
+            if (getHeight() < 400) {
+                scale = 3;
+            }
+            else if (getHeight() < 650) {
+                scale = 2;
+            }
+            return scale;
+        }
+
+
         public void drawBar(int x, int y, Bar bar, Graphics g, int scale) {
             int barvalue = bar.getValue() / scale;
+            int barwidth = bar.getWidth();
             y = y - barvalue;
             g.setColor(bar.getColor());
-            g.fillRect(x, y, 80, barvalue);
+            g.fillRect(x, y, barwidth, barvalue);
 
             FontMetrics metrics = g.getFontMetrics(g.getFont());
             int stringwidth = metrics.stringWidth(bar.getSubtitle());
