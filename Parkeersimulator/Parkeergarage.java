@@ -3,7 +3,6 @@ import Parkeersimulator.model.*;
 import Parkeersimulator.view.*;
 import Parkeersimulator.controller.*;
 import java.awt.*;
-import java.util.ArrayList;
 import javax.swing.*;
 /**
  * Created by Jeronimo on 1/27/2017.
@@ -21,7 +20,7 @@ public class Parkeergarage {
 
     public Parkeergarage() {
         simulator = new Simulator();
-        view = new CarParkView(simulator.getSimulatorView());
+        view = new BarView(simulator.getSimulatorView());
         simulator.getSimulatorView().setView(view);
         controller = new Controller(simulator, this);
 
@@ -30,7 +29,7 @@ public class Parkeergarage {
         frame.getContentPane().add(controller, BorderLayout.NORTH);
         frame.pack();
         frame.setVisible(true);
-        simulator.run(5);
+        simulator.getSimulatorView().updateView();
 
     }
     public void changeView() {
@@ -40,6 +39,9 @@ public class Parkeergarage {
             view = new CarParkView(simulator.getSimulatorView());
         }
         else if (view.getType() == "CarParkView")  {
+            view = new BarView(simulator.getSimulatorView());
+        }
+        else if (view.getType() == "BarView") {
             view = new TextView(simulator.getSimulatorView());
         }
 
