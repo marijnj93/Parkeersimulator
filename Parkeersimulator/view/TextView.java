@@ -28,7 +28,7 @@ public class TextView extends View {
 
         setLayout((new BoxLayout(this, BoxLayout.PAGE_AXIS)));
         setBorder(BorderFactory.createEmptyBorder(50, 50, 100, 100));
-        
+
         int totalspots = simulatorView.getNumberOfFloors() * simulatorView.getNumberOfRows() * simulatorView.getNumberOfPlaces();
 
         lbl_tSpots = new JLabel("Number of total spots: " + totalspots);
@@ -59,6 +59,7 @@ public class TextView extends View {
         lbl_Floors = new JLabel("Number of floors: " + simulatorView.getNumberOfFloors());
         labels.add(lbl_Floors);
 
+        //Zet de font size en maak zichtbaar voor elke label
         for (JLabel label:labels) {
             label.setFont(new Font(label.getName(), Font.PLAIN, 30));
             add(label);
