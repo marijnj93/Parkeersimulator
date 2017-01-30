@@ -22,8 +22,13 @@ public class PieView extends View {
     public PieView(SimulatorView simulatorView) {
         super(simulatorView, "BarView");
         size = new Dimension(0, 0);
-        slices.add(new Slice(343, Color.red, "totalcars"));
+
+        slices.add(new Slice(343, Color.red, "totalAD_HOC"));
+        slices.add(new Slice(343, Color.pink, "totalParkingPass"));
         slices.add(new Slice(343, Color.blue, "openspots"));
+
+
+
         setLayout((new BoxLayout(this, BoxLayout.PAGE_AXIS)));
         setBorder(BorderFactory.createEmptyBorder(50, 50, 100, 100));
         updateView();
@@ -54,9 +59,10 @@ public class PieView extends View {
         int x = getWidth() / 2 - (width / 2);
         int y = getHeight() / 2 - (height / 2);
 
+        //Eventueel floats veranderen naar longs
         float startangle = 0;
         for (Slice slice : slices) {
-            int value = slice.getValue();
+            int value = slice.getValue() + 1;
             System.out.println("" + value);
             float percentage = (float) value / (float) totalvalue * 100.0f;
             System.out.println("" + percentage);
@@ -73,11 +79,14 @@ public class PieView extends View {
     public void updateView() {
         totalvalue = simulatorView.getNumberOfPlaces() * simulatorView.getNumberOfFloors() * simulatorView.getNumberOfRows();
         for (Slice slice:slices) {
-            if (slice.getName() == "totalcars") {
-                slice.setValue(simulatorView.getTotalCars("AD_HOC") + simulatorView.getTotalCars("ParkingPass"));
+            if (slice.getName() == "totalAD_HOC") {
+                slice.setValue(simulatorView.getTotalCars("AD_HOC"));
             }
             if (slice.getName() == "openspots") {
                 slice.setValue(totalvalue - (simulatorView.getTotalCars("AD_HOC") + simulatorView.getTotalCars("ParkingPass")));
+            }
+            if (slice.getName() == "totalParkingPass") {
+                slice.setValue(simulatorView.getTotalCars("ParkingPass"));
             }
         }
         repaint();
