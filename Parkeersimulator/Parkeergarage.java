@@ -3,7 +3,6 @@ import Parkeersimulator.model.*;
 import Parkeersimulator.view.*;
 import Parkeersimulator.controller.*;
 import java.awt.*;
-import java.util.ArrayList;
 import javax.swing.*;
 /**
  * Created by Jeronimo on 1/27/2017.
