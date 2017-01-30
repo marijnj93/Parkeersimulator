@@ -202,4 +202,26 @@ public class SimulatorView {
         return true;
     }
 
+    public int getTotalCars(String type) {
+        int total = 0;
+        Color color;
+        if (type == "AD_HOC") {
+            color = Color.red;
+        }
+        else {
+            color = Color.blue;
+        }
+        for (int floor = 0; floor < getNumberOfFloors(); floor++) {
+            for (int row = 0; row < getNumberOfRows(); row++) {
+                for (int place = 0; place < getNumberOfPlaces(); place++) {
+                    Location location = new Location(floor, row, place);
+                    Car car = getCarAt(location);
+                    if (car != null && car.getColor() == color) {
+                        total += 1;
+                    }
+                }
+            }
+        }
+        return total;
+    }
 }
