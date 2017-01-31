@@ -20,7 +20,7 @@ public class Parkeergarage {
 
     public Parkeergarage() {
         simulator = new Simulator();
-        view = new PieView(simulator.getSimulatorView());
+        view = new BarView(simulator.getSimulatorView());
         simulator.getSimulatorView().setView(view);
         controller = new Controller(simulator, this);
 
@@ -42,6 +42,9 @@ public class Parkeergarage {
             view = new BarView(simulator.getSimulatorView());
         }
         else if (view.getType() == "BarView") {
+            view = new PieView(simulator.getSimulatorView());
+        }
+        else if (view.getType() == "PieView") {
             view = new TextView(simulator.getSimulatorView());
         }
 

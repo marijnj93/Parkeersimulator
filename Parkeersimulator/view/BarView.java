@@ -43,6 +43,12 @@ public class BarView extends View {
             colorindex++;
             bars.add(new Bar(0, "Open spots", "openspots", colors.get(colorindex)));
             colorindex++;
+            bars.add(new Bar(0, "Entrance", "entrancequeue", colors.get(colorindex)));
+            colorindex++;
+            bars.add(new Bar(0, "Exit", "exitqueue", colors.get(colorindex)));
+            colorindex++;
+            bars.add(new Bar(0, "Missed Customers", "missedcustomers", colors.get(colorindex)));
+            colorindex++;
 
 
             setLayout((new BoxLayout(this, BoxLayout.PAGE_AXIS)));
@@ -55,7 +61,7 @@ public class BarView extends View {
          * @return The dimension of the GUI
          */
         public Dimension getPreferredSize() {
-            return new Dimension(800, 500);
+            return new Dimension(1200, 500);
         }
 
         /**
@@ -66,6 +72,7 @@ public class BarView extends View {
         public void paintComponent(Graphics g) {
             //De super, (JPanel) moet ook getekend worden (?)
             super.paintComponent(g);
+            displayTime(g);
             drawGraph(g);
         }
 
@@ -121,6 +128,10 @@ public class BarView extends View {
             openspots = openspots - totalcars;
             int totalAD_HOC = simulatorView.getTotalCars("AD_HOC");
             int totalParkingPass = simulatorView.getTotalCars("ParkingPass");
+            int entrancequeue = simulatorView.getQueue("entranceCarQueue").carsInQueue();
+            int exitqueue = simulatorView.getQueue("exitCarQueue").carsInQueue();
+            int missedcustomers = simulatorView.getMissedCustomers();
+
             for (Bar bar:bars) {
 
                 if (bar.getName() == "totalcars") {
@@ -134,6 +145,15 @@ public class BarView extends View {
                 }
                 else if (bar.getName() == "totalParkingPass") {
                     bar.setValue(totalParkingPass);
+                }
+                else if (bar.getName() == "entrancequeue") {
+                    bar.setValue(entrancequeue);
+                }
+                else if (bar.getName() == "exitqueue") {
+                    bar.setValue(exitqueue);
+                }
+                else if (bar.getName() == "missedcustomers") {
+                    bar.setValue(missedcustomers);
                 }
             }
 

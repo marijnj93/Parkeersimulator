@@ -42,6 +42,7 @@ public class CarParkView extends View {
      * @param g
      */
     public void paintComponent(Graphics g) {
+
         if (carParkImage == null) {
             return;
         }
@@ -53,6 +54,7 @@ public class CarParkView extends View {
             // Rescale the previous image.
             g.drawImage(carParkImage, 0, 0, currentSize.width, currentSize.height, null);
         }
+        displayTime(g);
     }
 
     public void updateView() {

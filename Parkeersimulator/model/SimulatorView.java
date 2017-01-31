@@ -19,6 +19,7 @@ public class SimulatorView {
     private int numberOfPlaces;
     private int numberOfOpenSpots;
     private Car[][][] cars;
+    private Simulator simulator;
 
     /**
      *
@@ -26,11 +27,12 @@ public class SimulatorView {
      * @param numberOfRows, the number of rows.
      * @param numberOfPlaces, the number of places.
      */
-    public SimulatorView(int numberOfFloors, int numberOfRows, int numberOfPlaces) {
+    public SimulatorView(int numberOfFloors, int numberOfRows, int numberOfPlaces, Simulator simulator) {
         this.numberOfFloors = numberOfFloors;
         this.numberOfRows = numberOfRows;
         this.numberOfPlaces = numberOfPlaces;
         this.numberOfOpenSpots =numberOfFloors*numberOfRows*numberOfPlaces;
+        this.simulator = simulator;
         cars = new Car[numberOfFloors][numberOfRows][numberOfPlaces];
     }
     public void setView(View view) {
@@ -223,5 +225,14 @@ public class SimulatorView {
             }
         }
         return total;
+    }
+    public CarQueue getQueue(String type) {
+        return simulator.getQueue(type);
+    }
+    public int getMissedCustomers() {
+        return simulator.getMissedCustomers();
+    }
+    public String getTime() {
+        return simulator.getTime();
     }
 }

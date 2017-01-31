@@ -50,6 +50,7 @@ public class PieView extends View {
     public void paintComponent(Graphics g) {
         //De super, (JPanel) moet ook getekend worden (?)
         super.paintComponent(g);
+        displayTime(g);
         drawChart(g);
     }
 
@@ -59,19 +60,27 @@ public class PieView extends View {
         int x = getWidth() / 2 - (width / 2);
         int y = getHeight() / 2 - (height / 2);
 
+        g.setColor(Color.white);
+        g.fillRect(x + width + 50, y + height / 2, 150, 150);
+        g.setColor(Color.black);
+
         //Eventueel floats veranderen naar longs
         float startangle = 0;
+        int stringy = y + height / 2 + 25;
         for (Slice slice : slices) {
-            int value = slice.getValue() + 1;
-            System.out.println("" + value);
+            int value = slice.getValue();
             float percentage = (float) value / (float) totalvalue * 100.0f;
-            System.out.println("" + percentage);
             float angle = (360 / 100.0f) * percentage;
-            System.out.println("" + angle);
             g.setColor(slice.getColor());
             g.fillArc(x, y, width,height, (int)startangle,(int) angle );
             startangle += angle;
+
+            g.drawString(slice.getName(), x + width + 75, stringy);
+            stringy += 25;
         }
+
+
+
     }
 
 

@@ -66,6 +66,7 @@ public class TextView extends View {
         }
 
     }
+
     public void updateView() {
         lbl_OpenSpots.setText("Open spots: " + simulatorView.getNumberOfOpenSpots());
         lbl_totalAD_HOC.setText("Amount of normal cars: " + simulatorView.getTotalCars("AD_HOC"));

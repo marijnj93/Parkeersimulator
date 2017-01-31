@@ -1,6 +1,9 @@
 package Parkeersimulator.view;
 import javax.swing.*;
 import Parkeersimulator.model.*;
+
+import java.awt.*;
+
 /**
  * Created by Jeronimo on 1/27/2017.
  */
@@ -14,5 +17,10 @@ public abstract class View extends JPanel{
     public abstract void updateView();
     public String getType() {
         return type;
+    }
+
+    public void displayTime(Graphics g) {
+        g.setColor(Color.black);
+        g.drawString(simulatorView.getTime(), 50, 50);
     }
 }

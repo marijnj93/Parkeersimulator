@@ -20,27 +20,30 @@ public class Simulator {
     private CarQueue exitCarQueue;
     private SimulatorView simulatorView;
 
-    private int day = 0;
-    private int hour = 0;
-    private int minute = 0;
+    private int day = 6;
+    private int hour = 13;
+    private int minute = 30;
+
+    private int missedCustomers = 0;
 
     private int tickPause = 100;
 
+    //Misschien setters voor maken.
     int weekDayArrivals= 100; // average number of arriving cars per hour
     int weekendArrivals = 200; // average number of arriving cars per hour
-    int weekDayPassArrivals= 50; // average number of arriving cars per hour
-    int weekendPassArrivals = 5; // average number of arriving cars per hour
+    int weekDayPassArrivals= 500; // average number of arriving cars per hour
+    int weekendPassArrivals = 50; // average number of arriving cars per hour
 
     int enterSpeed = 3; // number of cars that can enter per minute
     int paymentSpeed = 7; // number of cars that can pay per minute
-    int exitSpeed = 5; // number of cars that can leave per minute
+    int exitSpeed = 6; // number of cars that can leave per minute
 
     public Simulator() {
         entranceCarQueue = new CarQueue();
         entrancePassQueue = new CarQueue();
         paymentCarQueue = new CarQueue();
         exitCarQueue = new CarQueue();
-        simulatorView = new SimulatorView(3, 6, 30);
+        simulatorView = new SimulatorView(3, 6, 30, this);
     }
 
     public SimulatorView getSimulatorView() {
@@ -194,10 +197,26 @@ public class Simulator {
                 ? weekDay
                 : weekend;
 
+        //Wordt niet rekening gehouden met extra uitstroom...
+        int specialoccasioncars = getSpecialOccasionCars();
+
         // Calculate the number of cars that arrive this minute.
         double standardDeviation = averageNumberOfCarsPerHour * 0.3;
         double numberOfCarsPerHour = averageNumberOfCarsPerHour + random.nextGaussian() * standardDeviation;
-        return (int)Math.round(numberOfCarsPerHour / 60);	
+        int numberOfCars = (int)Math.round(numberOfCarsPerHour / 60) + specialoccasioncars;
+
+        //Possibility of people not entering line if it's long
+        for (int i = 0; i < numberOfCars; i++) {
+            int carswaiting = entranceCarQueue.carsInQueue();
+            double x = Math.random();
+            double skipchance =  2 * (double) carswaiting;
+
+            if (x < skipchance / 100) {
+                missedCustomers++;
+                numberOfCars--;
+            }
+        }
+        return numberOfCars;
     }
 
     /**
@@ -230,4 +249,39 @@ public class Simulator {
         exitCarQueue.addCar(car);
     }
 
+    //Calculates the exta cars/minute during special occasions (theater for example)
+    public int getSpecialOccasionCars() {
+        int cars = 0;
+        Random random = new Random();
+        if ((day == 4 &&  hour == 19) || (day == 5 && hour == 19) || (day == 6 && hour == 14)) {
+            int var = random.nextInt(100) + 200;
+            cars = var / 60;
+        }
+        return cars;
+    }
+
+    public CarQueue getQueue(String type) {
+
+        switch (type) {
+            case "entranceCarQueue":
+                return entranceCarQueue;
+
+            case "entrancePassQueue":
+                return entrancePassQueue;
+
+            case "paymentCarQueue":
+                return paymentCarQueue;
+
+            case "exitCarQueue":
+                return exitCarQueue;
+
+        }
+        return null;
+    }
+    public int getMissedCustomers() {
+        return missedCustomers;
+    }
+    public String getTime() {
+        return "Day " + day + " H:M \n " + hour + ":" + minute;
+    }
 }
