@@ -20,7 +20,7 @@ public class PieView extends View {
      * @param simulatorView A simulatorView.
      */
     public PieView(SimulatorView simulatorView) {
-        super(simulatorView, "BarView");
+        super(simulatorView, "PieView");
         size = new Dimension(0, 0);
 
         slices.add(new Slice(343, Color.red, "totalAD_HOC"));
@@ -34,19 +34,7 @@ public class PieView extends View {
         updateView();
     }
 
-    /**
-     * Overridden. Tell the GUI manager how big we would like to be.
-     * @return The dimension of the GUI
-     */
-    public Dimension getPreferredSize() {
-        return new Dimension(800, 500);
-    }
 
-    /**
-     * Overridden. The car park view component needs to be redisplayed. Copy the
-     * internal image to screen.
-     * @param g
-     */
     public void paintComponent(Graphics g) {
         //De super, (JPanel) moet ook getekend worden (?)
         super.paintComponent(g);

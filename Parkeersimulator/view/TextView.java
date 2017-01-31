@@ -72,11 +72,4 @@ public class TextView extends View {
         lbl_totalAD_HOC.setText("Amount of normal cars: " + simulatorView.getTotalCars("AD_HOC"));
         lbl_totalParkingPass.setText("Amount of parkingpass-cars: " + simulatorView.getTotalCars("ParkingPass"));
     }
-    /**
-     * Overridden. Tell the GUI manager how big we would like to be.
-     * @return The dimension of the GUI
-     */
-    public Dimension getPreferredSize() {
-        return new Dimension(800, 500);
-    }
 }

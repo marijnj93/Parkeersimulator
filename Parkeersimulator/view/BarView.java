@@ -57,14 +57,6 @@ public class BarView extends View {
         }
 
         /**
-         * Overridden. Tell the GUI manager how big we would like to be.
-         * @return The dimension of the GUI
-         */
-        public Dimension getPreferredSize() {
-            return new Dimension(1200, 500);
-        }
-
-        /**
          * Overridden. The car park view component needs to be redisplayed. Copy the
          * internal image to screen.
          * @param g

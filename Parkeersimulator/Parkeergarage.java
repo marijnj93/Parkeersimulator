@@ -1,9 +1,12 @@
 package Parkeersimulator;
+import Parkeersimulator.controller.Menu;
 import Parkeersimulator.model.*;
 import Parkeersimulator.view.*;
 import Parkeersimulator.controller.*;
 import java.awt.*;
 import javax.swing.*;
+import javax.swing.border.Border;
+
 /**
  * Created by Jeronimo on 1/27/2017.
  */
@@ -15,41 +18,53 @@ public class Parkeergarage {
 
     private Simulator simulator;
     private View view;
-    private Controller controller;
+    private Menu menu;
+    private Settings settings;
+
     private JFrame frame;
 
     public Parkeergarage() {
         simulator = new Simulator();
         view = new BarView(simulator.getSimulatorView());
         simulator.getSimulatorView().setView(view);
-        controller = new Controller(simulator, this);
+        menu = new Menu(simulator, this);
+        settings = new Settings(simulator, this);
 
         frame = new JFrame();
         frame.getContentPane().add(view, BorderLayout.CENTER);
-        frame.getContentPane().add(controller, BorderLayout.NORTH);
+        frame.getContentPane().add(menu, BorderLayout.NORTH);
         frame.pack();
         frame.setVisible(true);
         simulator.getSimulatorView().updateView();
 
     }
     public void changeView() {
-        frame.remove(view);
 
-        if (view.getType() == "TextView") {
-            view = new CarParkView(simulator.getSimulatorView());
+        //Gelabeled zodat er uit een nested loop gebroken kan worden. Loopt door alle views en controllers..
+        setviewloop:
+        if (view.isDisplayable()) {
+            frame.remove(view);
+
+            if (view.getType() == "TextView") {
+                view = new CarParkView(simulator.getSimulatorView());
+            } else if (view.getType() == "CarParkView") {
+                view = new BarView(simulator.getSimulatorView());
+            } else if (view.getType() == "BarView") {
+                view = new PieView(simulator.getSimulatorView());
+            } else if (view.getType() == "PieView") {
+                frame.getContentPane().add(settings, BorderLayout.CENTER);
+                break setviewloop;
+            }
+            simulator.getSimulatorView().setView(view);
+            frame.getContentPane().add(view, BorderLayout.CENTER);
         }
-        else if (view.getType() == "CarParkView")  {
-            view = new BarView(simulator.getSimulatorView());
-        }
-        else if (view.getType() == "BarView") {
-            view = new PieView(simulator.getSimulatorView());
-        }
-        else if (view.getType() == "PieView") {
+        else {
+            frame.remove(settings);
             view = new TextView(simulator.getSimulatorView());
+            simulator.getSimulatorView().setView(view);
+            frame.getContentPane().add(view, BorderLayout.CENTER);
         }
 
-        simulator.getSimulatorView().setView(view);
-        frame.getContentPane().add(view);
         frame.revalidate();
         frame.pack();
         simulator.getSimulatorView().updateView();

@@ -28,13 +28,6 @@ public class CarParkView extends View {
         setBackground(Color.red);
     }
 
-    /**
-     * Overridden. Tell the GUI manager how big we would like to be.
-     * @return The dimension of the GUI
-     */
-    public Dimension getPreferredSize() {
-        return new Dimension(800, 500);
-    }
 
     /**
      * Overridden. The car park view component needs to be redisplayed. Copy the

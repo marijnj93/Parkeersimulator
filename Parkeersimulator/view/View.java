@@ -23,4 +23,11 @@ public abstract class View extends JPanel{
         g.setColor(Color.black);
         g.drawString(simulatorView.getTime(), 50, 50);
     }
+    /**
+     * Overridden. Tell the GUI manager how big we would like to be.
+     * @return The dimension of the GUI
+     */
+    public Dimension getPreferredSize() {
+        return new Dimension(1200, 500);
+    }
 }
