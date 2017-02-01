@@ -45,9 +45,9 @@ public class BarView extends View {
             colorindex++;
             bars.add(new Bar(0, "Open spots", "openspots", colors.get(colorindex)));
             colorindex++;
-            bars.add(new Bar(0, "Entrance", "entrancequeue", colors.get(colorindex)));
+            bars.add(new Bar(0, "Entrance ADHOC", "entranceadhoc", colors.get(colorindex)));
             colorindex++;
-            bars.add(new Bar(0, "Exit", "exitqueue", colors.get(colorindex)));
+            bars.add(new Bar(0, "Entrance Pass", "entrancepass", colors.get(colorindex)));
             colorindex++;
             bars.add(new Bar(0, "Missed Customers", "missedcustomers", colors.get(colorindex)));
             colorindex++;
@@ -109,7 +109,7 @@ public class BarView extends View {
             int totalAD_HOC = simulatorView.getTotalCars("AD_HOC");
             int totalParkingPass = simulatorView.getTotalCars("ParkingPass");
             int entrancequeue = simulatorView.getQueue("entranceCarQueue").carsInQueue();
-            int exitqueue = simulatorView.getQueue("exitCarQueue").carsInQueue();
+            int exitqueue = simulatorView.getQueue("entrancePassQueue").carsInQueue();
             int missedcustomers = simulatorView.getMissedCustomers();
 
             for (Bar bar:bars) {
@@ -126,10 +126,10 @@ public class BarView extends View {
                 else if (bar.getName() == "totalParkingPass") {
                     bar.setValue(totalParkingPass);
                 }
-                else if (bar.getName() == "entrancequeue") {
+                else if (bar.getName() == "entranceadhoc") {
                     bar.setValue(entrancequeue);
                 }
-                else if (bar.getName() == "exitqueue") {
+                else if (bar.getName() == "entrancepass") {
                     bar.setValue(exitqueue);
                 }
                 else if (bar.getName() == "missedcustomers") {
