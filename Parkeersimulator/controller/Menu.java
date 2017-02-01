@@ -1,14 +1,16 @@
 package Parkeersimulator.controller;
 import javax.swing.*;
+
+import Parkeersimulator.main.Parkeergarage;
 import Parkeersimulator.model.*;
-import Parkeersimulator.*;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+
 /**
  * Created by Jeronimo on 1/27/2017.
  */
-public class Menu extends Controller {
+public class Menu extends Controller implements ActionListener {
 
 
     private JButton btn_advance10;

@@ -232,7 +232,6 @@ public class SimulatorView {
     public int getMissedCustomers() {
         return simulator.getMissedCustomers();
     }
-    public String getTime() {
-        return simulator.getTime();
-    }
+    public String getTime() {return simulator.getTime();}
+    public int getProfit() {return simulator.getProfit();}
 }

@@ -1,4 +1,4 @@
-package Parkeersimulator;
+package Parkeersimulator.main;
 import Parkeersimulator.controller.Menu;
 import Parkeersimulator.model.*;
 import Parkeersimulator.view.*;
@@ -14,7 +14,6 @@ import javax.swing.border.Border;
 //Maak dit misschien een JFrame (extending)
 public class Parkeergarage {
 
-    //Zorg ervoor dat bij meerdere views een array wordt gebuikt en door heen wordt geloopt..
 
     private Simulator simulator;
     private View view;
@@ -34,10 +33,12 @@ public class Parkeergarage {
         frame.getContentPane().add(view, BorderLayout.CENTER);
         frame.getContentPane().add(menu, BorderLayout.NORTH);
         frame.pack();
+        Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
+        frame.setLocation(dim.width/2-frame.getSize().width/2, dim.height/2-frame.getSize().height/2);
         frame.setVisible(true);
         simulator.getSimulatorView().updateView();
-
     }
+
     public void changeView() {
 
         //Gelabeled zodat er uit een nested loop gebroken kan worden. Loopt door alle views en controllers..

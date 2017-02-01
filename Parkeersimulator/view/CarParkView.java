@@ -25,7 +25,6 @@ public class CarParkView extends View {
     public CarParkView(SimulatorView simulatorView) {
         super(simulatorView, "CarParkView");
         size = new Dimension(0, 0);
-        setBackground(Color.red);
     }
 
 
@@ -35,14 +34,14 @@ public class CarParkView extends View {
      * @param g
      */
     public void paintComponent(Graphics g) {
-
+        super.paintComponent(g);
         if (carParkImage == null) {
             return;
         }
 
         Dimension currentSize = getSize();
         if (size.equals(currentSize)) {
-            g.drawImage(carParkImage, 0, 0, null);
+            g.drawImage(carParkImage, (0), 0, null);
         } else {
             // Rescale the previous image.
             g.drawImage(carParkImage, 0, 0, currentSize.width, currentSize.height, null);

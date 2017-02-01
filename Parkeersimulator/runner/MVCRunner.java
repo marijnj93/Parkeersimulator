@@ -1,6 +1,6 @@
-package Parkeersimulator;
+package Parkeersimulator.runner;
 
-import Parkeersimulator.model.Simulator;
+import Parkeersimulator.main.Parkeergarage;
 
 /**
  * This class is used to start the program.
@@ -8,7 +8,7 @@ import Parkeersimulator.model.Simulator;
  * @author Marijn, Mark, Vincent, Bart,
  * @since 26-01-2017
  */
-public class Main {
+public class MVCRunner {
     public static void main(String[] args) {
         Parkeergarage garage = new Parkeergarage();
     }

@@ -1,6 +1,7 @@
 package Parkeersimulator.model;
 
 import java.awt.*;
+import java.util.Random;
 
 /**
  *
@@ -13,11 +14,15 @@ public abstract class Car {
     private int minutesLeft;
     private boolean isPaying;
     private boolean hasToPay;
-
+    private int stayTime;
     /**
      * Constructor for objects of class Car
      */
     public Car() {
+        Random random = new Random();
+        int stayMinutes = (int) (15 + random.nextFloat() * 3 * 60);
+        this.setMinutesLeft(stayMinutes);
+        stayTime = stayMinutes;
     }
 
     /**
@@ -82,6 +87,11 @@ public abstract class Car {
      */
     public void setHasToPay(boolean hasToPay) {
         this.hasToPay = hasToPay;
+    }
+
+    //Returns the total time the car was parked
+    public int getStayTime() {
+        return stayTime;
     }
 
     public void tick() {

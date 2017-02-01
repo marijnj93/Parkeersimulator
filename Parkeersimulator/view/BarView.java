@@ -65,6 +65,7 @@ public class BarView extends View {
             //De super, (JPanel) moet ook getekend worden (?)
             super.paintComponent(g);
             displayTime(g);
+            displayProfit(g);
             drawGraph(g);
         }
 
@@ -78,18 +79,6 @@ public class BarView extends View {
             }
 
         }
-    //Scale van 1 is 1 val = 1 pixel.
-        public int getScale() {
-            int scale = 1;
-            if (getHeight() < 400) {
-                scale = 3;
-            }
-            else if (getHeight() < 650) {
-                scale = 2;
-            }
-            return scale;
-        }
-
 
         public void drawBar(int x, int y, Bar bar, Graphics g, int scale) {
             int barvalue = bar.getValue() / scale;
@@ -103,16 +92,12 @@ public class BarView extends View {
             g.setColor(Color.black);
             g.drawString(bar.getSubtitle(), x + 40 - stringwidth / 2, y + barvalue + 30 );
 
+            stringwidth = metrics.stringWidth("" + barvalue);
+            g.drawString("" + bar.getValue(), x + 40 - stringwidth / 2, y + barvalue + 50);
 
         }
-        public Color randomColor() {
-            Random rand = new Random();
 
-            int r = rand.nextInt(255);
-            int g = rand.nextInt(255);
-            int b = rand.nextInt(255);
-            return new Color(r, g, b);
-        }
+
 
         public void updateView() {
             int totalcars = simulatorView.getTotalCars("AD_HOC") + simulatorView.getTotalCars("ParkingPass");
@@ -151,6 +136,26 @@ public class BarView extends View {
 
             repaint();
         }
+    //Scale van 1 is 1 val = 1 pixel.
+    public int getScale() {
+        int scale = 1;
+        if (getHeight() < 400) {
+            scale = 3;
+        }
+        else if (getHeight() < 650) {
+            scale = 2;
+        }
+        return scale;
+    }
+
+    public Color randomColor() {
+        Random rand = new Random();
+
+        int r = rand.nextInt(255);
+        int g = rand.nextInt(255);
+        int b = rand.nextInt(255);
+        return new Color(r, g, b);
+    }
 
     private class Bar {
         private int value;

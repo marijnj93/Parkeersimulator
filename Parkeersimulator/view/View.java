@@ -20,8 +20,16 @@ public abstract class View extends JPanel{
     }
 
     public void displayTime(Graphics g) {
+        g.setColor(Color.white);
+        g.fillRect(0, 0, 130, 30);
         g.setColor(Color.black);
-        g.drawString(simulatorView.getTime(), 50, 50);
+        g.drawString(simulatorView.getTime(), 20, 20);
+    }
+    public void displayProfit(Graphics g) {
+        g.setColor(Color.white);
+        g.fillRect(0, 40, 130, 30);
+        g.setColor(Color.black);
+        g.drawString("Total profit: $" + (simulatorView.getProfit() / 100), 20, 60); //Profit is in centen, dus delen door 100
     }
     /**
      * Overridden. Tell the GUI manager how big we would like to be.

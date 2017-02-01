@@ -25,6 +25,9 @@ public class Simulator {
     private int minute = 30;
 
     private int missedCustomers = 0;
+    private int profit = 0;
+    //cost/minute in centen
+    private int cost = 5;
 
     private int tickPause = 100;
 
@@ -38,6 +41,13 @@ public class Simulator {
     int paymentSpeed = 7; // number of cars that can pay per minute
     int exitSpeed = 6; // number of cars that can leave per minute
 
+    public void setWeekDayArrivals(int val) {weekDayArrivals = val;}
+    public void setWeekendArrivals(int val) {weekendArrivals = val;}
+    public void setWeekDayPassArrivals(int val) {weekendPassArrivals = val;}
+    public void setWeekendPassrrivals(int val) {weekendPassArrivals = val;}
+    public void setEnterSpeed(int val) {enterSpeed = val;}
+    public void setPaymentSpeed(int val) {paymentSpeed = val;}
+    public void setExitSpeed(int val) {exitSpeed = val;}
     public Simulator() {
         entranceCarQueue = new CarQueue();
         entrancePassQueue = new CarQueue();
@@ -168,7 +178,8 @@ public class Simulator {
     	int i=0;
     	while (paymentCarQueue.carsInQueue()>0 && i < paymentSpeed){
             Car car = paymentCarQueue.removeCar();
-            // TODO Handle payment.
+            // TODO Handle payment. (deels gedaan nu)
+            profit += cost * car.getStayTime();
             carLeavesSpot(car);
             i++;
     	}
@@ -209,7 +220,7 @@ public class Simulator {
         for (int i = 0; i < numberOfCars; i++) {
             int carswaiting = entranceCarQueue.carsInQueue();
             double x = Math.random();
-            double skipchance =  2 * (double) carswaiting;
+            double skipchance =  0.75 * (double) carswaiting;
 
             if (x < skipchance / 100) {
                 missedCustomers++;
@@ -283,5 +294,8 @@ public class Simulator {
     }
     public String getTime() {
         return "Day " + day + " H:M \n " + hour + ":" + minute;
+    }
+    public int getProfit() {
+        return profit;
     }
 }
