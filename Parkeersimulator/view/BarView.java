@@ -66,6 +66,7 @@ public class BarView extends View {
             super.paintComponent(g);
             displayTime(g);
             displayProfit(g);
+            displayType(g);
             drawGraph(g);
         }
 

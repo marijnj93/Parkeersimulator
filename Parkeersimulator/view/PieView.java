@@ -39,6 +39,8 @@ public class PieView extends View {
         //De super, (JPanel) moet ook getekend worden (?)
         super.paintComponent(g);
         displayTime(g);
+        displayProfit(g);
+        displayType(g);
         drawChart(g);
     }
 
@@ -49,7 +51,7 @@ public class PieView extends View {
         int y = getHeight() / 2 - (height / 2);
 
         g.setColor(Color.white);
-        g.fillRect(x + width + 50, y + height / 2, 150, 150);
+        g.fillRect(x + width + 50, y + height / 2, 175, 150);
         g.setColor(Color.black);
 
         //Eventueel floats veranderen naar longs
@@ -63,7 +65,7 @@ public class PieView extends View {
             g.fillArc(x, y, width,height, (int)startangle,(int) angle );
             startangle += angle;
 
-            g.drawString(slice.getName(), x + width + 75, stringy);
+            g.drawString(slice.getName() +" " + slice.getValue(), x + width + 75, stringy);
             stringy += 25;
         }
 

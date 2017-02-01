@@ -47,6 +47,8 @@ public class CarParkView extends View {
             g.drawImage(carParkImage, 0, 0, currentSize.width, currentSize.height, null);
         }
         displayTime(g);
+        displayProfit(g);
+        displayType(g);
     }
 
     public void updateView() {
