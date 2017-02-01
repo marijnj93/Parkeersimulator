@@ -24,7 +24,7 @@ public class Simulator {
 
     private int day = 6;
     private int hour = 14;
-    private int minute = 30;
+    private int minute = 00;
 
     private int missedCustomers = 0;
     private int profit = 0;
@@ -50,6 +50,8 @@ public class Simulator {
     public void setEnterSpeed(int val) {enterSpeed = val;}
     public void setPaymentSpeed(int val) {paymentSpeed = val;}
     public void setExitSpeed(int val) {exitSpeed = val;}
+    public void setTickPause(int val) {tickPause = val;}
+
     public Simulator() {
         entranceCarQueue = new CarQueue();
         entrancePassQueue = new CarQueue();
@@ -132,33 +134,46 @@ public class Simulator {
         int i=0;
         // Remove car from the front of the queue and assign to a parking space.
         // Houdt rekening met bepaalde plekken die alleen voor abbonomentshouders bedoeld zijn, aan de hand van een boolean in Location.
-    	while (queue.carsInQueue()>0 && 
+
+        while (queue.carsInQueue()>0 &&
     			simulatorView.getNumberOfOpenSpots()>0 && 
     			i<enterSpeed) {
             Location freeLocation = simulatorView.getFirstFreeLocation();
             Location freeReservedLocation = simulatorView.getFirstRservedLocation();
-            Car car = null;
-            if (freeLocation != null) {
-                car = queue.removeCar();
-            }
-            if (car != null && car.getColor() == Color.blue ) {
+            Car car = queue.nextCar();
+
+            if (car.getColor() == Color.blue && freeReservedLocation != null && freeLocation != null) {
+                //maak een calculateClosest() in simulatorview LET OP; hier wordt de floor etc niet goed vergeleken
                 if (freeLocation.getFloor() < freeReservedLocation.getFloor()) {
                     simulatorView.setCarAt(freeLocation, car);
-                }
-                else if (freeLocation.getFloor() == freeReservedLocation.getFloor() && freeLocation.getRow() < freeReservedLocation.getRow()) {
+                } else if (freeLocation.getFloor() == freeReservedLocation.getFloor() && freeLocation.getRow() < freeReservedLocation.getRow()) {
                     simulatorView.setCarAt(freeLocation, car);
-                }
-                else if (freeLocation.getFloor() == freeReservedLocation.getFloor() && freeLocation.getRow() < freeReservedLocation.getRow() && freeLocation.getPlace() < freeReservedLocation.getPlace()) {
+                } else if (freeLocation.getFloor() == freeReservedLocation.getFloor() && freeLocation.getRow() < freeReservedLocation.getRow() && freeLocation.getPlace() < freeReservedLocation.getPlace()) {
                     simulatorView.setCarAt(freeLocation, car);
-                }
-                else {
+                } else {
                     simulatorView.setCarAt(freeReservedLocation, car);
                 }
+                queue.removeCar();
+                i++;
             }
-            else if (car != null){
+            else if (car.getColor() == Color.blue && freeLocation == null && freeReservedLocation != null) {
+                simulatorView.setCarAt(freeReservedLocation, car);
+                i++;
+                queue.removeCar();
+            }
+            else if (car.getColor() == Color.blue && freeLocation != null){
                 simulatorView.setCarAt(freeLocation, car);
+                i++;
+                queue.removeCar();
             }
-            i++;
+            else if (car.getColor() == Color.red && freeLocation != null) {
+                simulatorView.setCarAt(freeLocation, car);
+                i++;
+                queue.removeCar();
+            }
+            else {
+                break;
+            }
 
         }
     }

@@ -28,6 +28,8 @@ public class Settings extends Controller {
 
         options.add(new Option("Enter speed: ", "enterSpeed"));
         options.add(new Option("Exit speed: : ", "exitSpeed"));
+        options.add(new Option("Payment speed: : ", "paymentSpeed"));
+        options.add(new Option("Simulator speed : ", "tickPause"));
 
         for (Option option : options) {
             option.display();
@@ -84,6 +86,12 @@ public class Settings extends Controller {
                     break;
                 case "exitSpeed":
                     simulator.setExitSpeed(value);
+                    break;
+                case "paymentSpeed":
+                    simulator.setPaymentSpeed(value);
+                    break;
+                case "tickPause":
+                    simulator.setTickPause(value);
                     break;
             }
         }

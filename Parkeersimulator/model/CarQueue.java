@@ -28,6 +28,8 @@ public class CarQueue {
         return queue.poll();
     }
 
+    public Car nextCar() {return queue.peek();}
+
     /**
      *
      * @return the size of the queue.

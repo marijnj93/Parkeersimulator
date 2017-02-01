@@ -26,7 +26,7 @@ public class Parkeergarage {
 
     public Parkeergarage() {
         simulator = new Simulator();
-        view = new BarView(simulator.getSimulatorView());
+        view = new CarParkView(simulator.getSimulatorView());
         simulator.getSimulatorView().setView(view);
         menu = new Menu(simulator, this);
         settings = new Settings(simulator, this);
@@ -39,6 +39,8 @@ public class Parkeergarage {
         frame.setLocation(dim.width/2-frame.getSize().width/2, dim.height/2-frame.getSize().height/2);
         frame.setVisible(true);
         simulator.getSimulatorView().updateView();
+
+
     }
 
     public void changeView() {
