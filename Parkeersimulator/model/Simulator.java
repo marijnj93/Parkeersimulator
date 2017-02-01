@@ -22,8 +22,8 @@ public class Simulator {
     private CarQueue exitCarQueue;
     private SimulatorView simulatorView;
 
-    private int day = 6;
-    private int hour = 14;
+    private int day = 4;
+    private int hour = 19;
     private int minute = 00;
 
     private int missedCustomers = 0;
@@ -120,9 +120,9 @@ public class Simulator {
     }
     
     private void carsArriving(){
-    	int numberOfCars=getNumberOfCars(weekDayArrivals, weekendArrivals);
+    	int numberOfCars=getNumberOfCars(weekDayArrivals, weekendArrivals, AD_HOC);
         addArrivingCars(numberOfCars, AD_HOC);    	
-    	numberOfCars=getNumberOfCars(weekDayPassArrivals, weekendPassArrivals);
+    	numberOfCars=getNumberOfCars(weekDayPassArrivals, weekendPassArrivals, PASS);
         addArrivingCars(numberOfCars, PASS);    	
     }
 
@@ -143,16 +143,8 @@ public class Simulator {
             Car car = queue.nextCar();
 
             if (car.getColor() == Color.blue && freeReservedLocation != null && freeLocation != null) {
-                //maak een calculateClosest() in simulatorview LET OP; hier wordt de floor etc niet goed vergeleken
-                if (freeLocation.getFloor() < freeReservedLocation.getFloor()) {
-                    simulatorView.setCarAt(freeLocation, car);
-                } else if (freeLocation.getFloor() == freeReservedLocation.getFloor() && freeLocation.getRow() < freeReservedLocation.getRow()) {
-                    simulatorView.setCarAt(freeLocation, car);
-                } else if (freeLocation.getFloor() == freeReservedLocation.getFloor() && freeLocation.getRow() < freeReservedLocation.getRow() && freeLocation.getPlace() < freeReservedLocation.getPlace()) {
-                    simulatorView.setCarAt(freeLocation, car);
-                } else {
-                    simulatorView.setCarAt(freeReservedLocation, car);
-                }
+                Location closestSpot = simulatorView.calculateClosestLocation(freeLocation, freeReservedLocation);
+                simulatorView.setCarAt(closestSpot, car);
                 queue.removeCar();
                 i++;
             }
@@ -220,7 +212,7 @@ public class Simulator {
      * @param weekend
      * @return The number of cars per hour / 60
      */
-    private int getNumberOfCars(int weekDay, int weekend){
+    private int getNumberOfCars(int weekDay, int weekend, String type){
         Random random = new Random();
 
         // Get the average number of cars that arrive per hour.
@@ -239,10 +231,13 @@ public class Simulator {
         //Possibility of people not entering line if it's long
         for (int i = 0; i < numberOfCars; i++) {
             int carswaiting = entranceCarQueue.carsInQueue();
+            if (type == PASS) {
+                carswaiting = entrancePassQueue.carsInQueue();
+            }
             double x = Math.random();
-            double skipchance =  0.75 * (double) carswaiting;
+            double skipchance =  0.8 * (double) carswaiting;
 
-            if (x < skipchance / 100) {
+            if (x <= skipchance / 100) {
                 missedCustomers++;
                 numberOfCars--;
             }
