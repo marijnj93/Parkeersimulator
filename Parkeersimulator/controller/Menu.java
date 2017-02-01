@@ -8,7 +8,9 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 /**
- * Created by Jeronimo on 1/27/2017.
+ *
+ * @author Marijn, Mark, Vincent, Bart,
+ * @since 26-01-2017
  */
 public class Menu extends Controller implements ActionListener {
 

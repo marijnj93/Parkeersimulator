@@ -11,7 +11,9 @@ import java.lang.reflect.Method;
 import java.util.ArrayList;
 
 /**
- * Created by Jeronimo on 1/31/2017.
+ *
+ * @author Marijn, Mark, Vincent, Bart,
+ * @since 26-01-2017
  */
 public class Settings extends Controller {
 

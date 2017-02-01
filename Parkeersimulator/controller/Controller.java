@@ -7,7 +7,9 @@ import javax.swing.*;
 import java.awt.event.ActionListener;
 
 /**
- * Created by Jeronimo on 1/31/2017.
+ *
+ * @author Marijn, Mark, Vincent, Bart,
+ * @since 26-01-2017
  */
 public abstract class Controller extends JPanel {
     Simulator simulator;

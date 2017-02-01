@@ -10,7 +10,9 @@ import java.util.ArrayList;
 import java.util.Random;
 
 /**
- * Created by Jeronimo on 1/30/2017.
+ *
+ * @author Marijn, Mark, Vincent, Bart,
+ * @since 26-01-2017
  */
 public class BarView extends View {
 
