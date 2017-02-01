@@ -134,7 +134,7 @@ public class SimulatorView {
             for (int row = 0; row < getNumberOfRows(); row++) {
                 for (int place = 0; place < getNumberOfPlaces(); place++) {
                     Location location = new Location(floor, row, place);
-                    if (getCarAt(location) == null && !location.reserved()) {
+                    if (getCarAt(location) == null && location.reserved() == false) {
                         return location;
                     }
                 }
@@ -225,6 +225,22 @@ public class SimulatorView {
             }
         }
         return total;
+    }
+    public Location calculateClosestLocation(Location loc1, Location loc2) {
+        Location closest = null;
+        if (loc1.getFloor() < loc2.getFloor()) {
+            closest = loc1;
+        }
+        else if (loc1.getRow() < loc2.getRow() && loc1.getFloor() <= loc2.getFloor()) {
+            closest = loc1;
+        }
+        else if (loc1.getPlace() < loc2.getPlace() && loc1.getRow() <= loc2.getRow() && loc1.getFloor() <= loc2.getFloor()) {
+            closest = loc1;
+        }
+        else {
+            closest = loc2;
+        }
+        return closest;
     }
     public CarQueue getQueue(String type) {
         return simulator.getQueue(type);
