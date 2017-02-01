@@ -1,6 +1,8 @@
 package Parkeersimulator.model;
 
 import java.awt.*;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Random;
 
 /**
@@ -21,7 +23,7 @@ public class Simulator {
     private SimulatorView simulatorView;
 
     private int day = 6;
-    private int hour = 13;
+    private int hour = 14;
     private int minute = 30;
 
     private int missedCustomers = 0;
@@ -135,8 +137,11 @@ public class Simulator {
     			i<enterSpeed) {
             Location freeLocation = simulatorView.getFirstFreeLocation();
             Location freeReservedLocation = simulatorView.getFirstRservedLocation();
-            Car car = queue.removeCar();
-            if (car.getColor() == Color.blue) {
+            Car car = null;
+            if (freeLocation != null) {
+                car = queue.removeCar();
+            }
+            if (car != null && car.getColor() == Color.blue ) {
                 if (freeLocation.getFloor() < freeReservedLocation.getFloor()) {
                     simulatorView.setCarAt(freeLocation, car);
                 }
@@ -150,7 +155,7 @@ public class Simulator {
                     simulatorView.setCarAt(freeReservedLocation, car);
                 }
             }
-            else {
+            else if (car != null){
                 simulatorView.setCarAt(freeLocation, car);
             }
             i++;
@@ -293,7 +298,15 @@ public class Simulator {
         return missedCustomers;
     }
     public String getTime() {
-        return "Day " + day + " H:M \n " + hour + ":" + minute;
+        Map days = new HashMap<Integer, String>();
+        days.put(0, "Monday");
+        days.put(1, "Tuesday");
+        days.put(2, "Wednesday");
+        days.put(3, "Thursday");
+        days.put(4, "Friday");
+        days.put(5, "Saturday");
+        days.put(6, "Sunday");
+        return days.get(day) + "  " + hour + ":" + minute;
     }
     public int getProfit() {
         return profit;
