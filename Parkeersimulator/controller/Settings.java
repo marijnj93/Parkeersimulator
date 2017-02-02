@@ -5,8 +5,6 @@ import Parkeersimulator.model.Simulator;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
 /**
@@ -62,13 +60,14 @@ public class Settings extends Controller {
             btn_Submit = new JButton("Set");
             this.variable = variable;
 
-            btn_Submit.addActionListener(new ActionListener() {
-                @Override
-                public void actionPerformed(ActionEvent e) {
-                    int value = Integer.parseInt(txt_Input.getText());
-                    JOptionPane.showMessageDialog(new JFrame(), txt_Input.getText());
-                    setValue(value);
+            btn_Submit.addActionListener(e -> {
+                int value = 0;
+                try {
+                    value = Integer.parseInt(txt_Input.getText());
+                } catch (NumberFormatException ex) {
+                    JOptionPane.showMessageDialog(new JFrame(), "Input only numbers");
                 }
+                setValue(value);
             });
         }
         public void display() {
