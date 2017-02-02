@@ -79,13 +79,13 @@ public class PieView extends View {
     public void updateView() {
         totalvalue = simulatorView.getNumberOfPlaces() * simulatorView.getNumberOfFloors() * simulatorView.getNumberOfRows();
         for (Slice slice:slices) {
-            if (slice.getName() == "totalAD_HOC") {
+            if (slice.getName().equals("totalAD_HOC")) {
                 slice.setValue(simulatorView.getTotalCars("AD_HOC"));
             }
-            if (slice.getName() == "openspots") {
+            if (slice.getName().equals("openspots")) {
                 slice.setValue(totalvalue - (simulatorView.getTotalCars("AD_HOC") + simulatorView.getTotalCars("ParkingPass")));
             }
-            if (slice.getName() == "totalParkingPass") {
+            if (slice.getName().equals("totalParkingPass")) {
                 slice.setValue(simulatorView.getTotalCars("ParkingPass"));
             }
         }
