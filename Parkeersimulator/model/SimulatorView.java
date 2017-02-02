@@ -2,6 +2,7 @@ package Parkeersimulator.model;
 
 import Parkeersimulator.view.*;
 import java.awt.*;
+import java.util.ArrayList;
 
 /**
  *
@@ -17,6 +18,7 @@ public class SimulatorView {
     private Car[][][] cars;
     private Simulator simulator;
 
+
     /**
      *
      * @param numberOfFloors, The number of floors.
@@ -30,6 +32,7 @@ public class SimulatorView {
         this.numberOfOpenSpots =numberOfFloors*numberOfRows*numberOfPlaces;
         this.simulator = simulator;
         cars = new Car[numberOfFloors][numberOfRows][numberOfPlaces];
+
     }
     public void setView(View view) {
         this.view = view;
@@ -138,7 +141,7 @@ public class SimulatorView {
         }
         return null;
     }
-    public Location getFirstRservedLocation() {
+    public Location getFirstReservedLocation() {
         for (int floor = 0; floor < getNumberOfFloors(); floor++) {
             for (int row = 0; row < getNumberOfRows(); row++) {
                 for (int place = 0; place < getNumberOfPlaces(); place++) {
@@ -238,6 +241,7 @@ public class SimulatorView {
         }
         return closest;
     }
+
     public CarQueue getQueue(String type) {
         return simulator.getQueue(type);
     }

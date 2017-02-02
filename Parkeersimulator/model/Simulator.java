@@ -1,6 +1,7 @@
 package Parkeersimulator.model;
 
 import java.awt.*;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Random;
@@ -20,6 +21,7 @@ public class Simulator {
     private CarQueue entrancePassQueue;
     private CarQueue paymentCarQueue;
     private CarQueue exitCarQueue;
+    private ArrayList<ReservedCar> ReservedCars;
     private SimulatorView simulatorView;
 
     private int day = 4;
@@ -40,6 +42,7 @@ public class Simulator {
     int weekDayPassArrivals; // average number of arriving cars per hour
     int weekendPassArrivals; // average number of arriving cars per hour
     int specialOccasionArivals = 400;
+    int newReservations = 4; //Average amount of reservations per hour
 
     int enterSpeed = 3; // number of cars that can enter per minute
     int paymentSpeed = 7; // number of cars that can pay per minute
@@ -59,6 +62,7 @@ public class Simulator {
         entrancePassQueue = new CarQueue();
         paymentCarQueue = new CarQueue();
         exitCarQueue = new CarQueue();
+        ReservedCars = new ArrayList<ReservedCar>();
         simulatorView = new SimulatorView(3, 6, 30, this);
     }
 
@@ -106,9 +110,23 @@ public class Simulator {
     private void handleEntrance(){
     	carsArriving();
     	carsEntering(entrancePassQueue);
-    	carsEntering(entranceCarQueue);  	
+    	carsEntering(entranceCarQueue);
+    	handleReservations();
     }
-    
+    private void handleReservations() {
+        int reservechance = 1;
+        Random random = new Random();
+        int reservations = Math.round((random.nextInt((50) + 20) * newReservations) / 100) ;
+        for (int i = 0; i < reservations; i++) {
+            Location location = simulatorView.getFirstFreeLocation();
+            if (location != null) {
+                ReservedCar car = new ReservedCar(hour);
+                ReservedCars.add(car);
+                simulatorView.setCarAt(simulatorView.getFirstFreeLocation(), car);
+            }
+        }
+
+    }
     private void handleExit(){
         carsReadyToLeave();
         carsPaying();
@@ -143,7 +161,7 @@ public class Simulator {
     			simulatorView.getNumberOfOpenSpots()>0 && 
     			i<enterSpeed) {
             Location freeLocation = simulatorView.getFirstFreeLocation();
-            Location freeReservedLocation = simulatorView.getFirstRservedLocation();
+            Location freeReservedLocation = simulatorView.getFirstReservedLocation();
             Car car = queue.nextCar();
 
             if (car.getColor() == Color.blue && freeReservedLocation != null && freeLocation != null) {
