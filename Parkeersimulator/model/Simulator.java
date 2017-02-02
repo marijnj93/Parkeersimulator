@@ -23,9 +23,10 @@ public class Simulator {
     private SimulatorView simulatorView;
 
     private int day = 4;
-    private int hour = 19;
-    private int minute = 00;
+    private int hour = 18;
+    private int minute = 30;
 
+    private int PassHolders = 150;
     private int missedCustomers = 0;
     private int profit = 0;
     //cost/minute in centen
@@ -34,10 +35,11 @@ public class Simulator {
     private int tickPause = 100;
 
     //Misschien setters voor maken.
-    int weekDayArrivals= 100; // average number of arriving cars per hour
-    int weekendArrivals = 200; // average number of arriving cars per hour
-    int weekDayPassArrivals= 500; // average number of arriving cars per hour
-    int weekendPassArrivals = 50; // average number of arriving cars per hour
+    int weekDayArrivals= 150; // average number of arriving cars per hour
+    int weekendArrivals = 250; // average number of arriving cars per hour
+    int weekDayPassArrivals; // average number of arriving cars per hour
+    int weekendPassArrivals; // average number of arriving cars per hour
+    int specialOccasionArivals = 400;
 
     int enterSpeed = 3; // number of cars that can enter per minute
     int paymentSpeed = 7; // number of cars that can pay per minute
@@ -46,7 +48,7 @@ public class Simulator {
     public void setWeekDayArrivals(int val) {weekDayArrivals = val;}
     public void setWeekendArrivals(int val) {weekendArrivals = val;}
     public void setWeekDayPassArrivals(int val) {weekendPassArrivals = val;}
-    public void setWeekendPassrrivals(int val) {weekendPassArrivals = val;}
+    public void setWeekendPassArrivals(int val) {weekendPassArrivals = val;}
     public void setEnterSpeed(int val) {enterSpeed = val;}
     public void setPaymentSpeed(int val) {paymentSpeed = val;}
     public void setExitSpeed(int val) {exitSpeed = val;}
@@ -120,6 +122,8 @@ public class Simulator {
     }
     
     private void carsArriving(){
+        weekendPassArrivals = PassHolders / 3;
+        weekDayPassArrivals = PassHolders / 2;
     	int numberOfCars=getNumberOfCars(weekDayArrivals, weekendArrivals, AD_HOC);
         addArrivingCars(numberOfCars, AD_HOC);    	
     	numberOfCars=getNumberOfCars(weekDayPassArrivals, weekendPassArrivals, PASS);
@@ -214,33 +218,45 @@ public class Simulator {
      */
     private int getNumberOfCars(int weekDay, int weekend, String type){
         Random random = new Random();
-
         // Get the average number of cars that arrive per hour.
         int averageNumberOfCarsPerHour = day < 5
                 ? weekDay
                 : weekend;
 
-        //Wordt niet rekening gehouden met extra uitstroom...
         int specialoccasioncars = getSpecialOccasionCars();
 
         // Calculate the number of cars that arrive this minute.
+        System.out.println(" " + averageNumberOfCarsPerHour);
         double standardDeviation = averageNumberOfCarsPerHour * 0.3;
         double numberOfCarsPerHour = averageNumberOfCarsPerHour + random.nextGaussian() * standardDeviation;
         int numberOfCars = (int)Math.round(numberOfCarsPerHour / 60) + specialoccasioncars;
 
         //Possibility of people not entering line if it's long
+        int skipped = 0;
         for (int i = 0; i < numberOfCars; i++) {
-            int carswaiting = entranceCarQueue.carsInQueue();
+            int carswaiting = 0;
             if (type == PASS) {
                 carswaiting = entrancePassQueue.carsInQueue();
+            }
+            else {
+                carswaiting = entranceCarQueue.carsInQueue();
             }
             double x = Math.random();
             double skipchance =  0.8 * (double) carswaiting;
 
-            if (x <= skipchance / 100) {
+            if (x <= (skipchance / 100)) {
                 missedCustomers++;
-                numberOfCars--;
+                skipped++;
             }
+        }
+        numberOfCars -= skipped;
+        //Zorgt ervoor dat er niet meer parking passes komen te staan dan dat er passen zijn..
+        int parkedParkingPass = simulatorView.getTotalCars("ParkingPass" ) + entrancePassQueue.carsInQueue();
+        if (parkedParkingPass >= PassHolders && type == PASS) {
+            return 0;
+        }
+        else if (type == PASS && numberOfCars >= parkedParkingPass) {
+            return PassHolders - parkedParkingPass;
         }
         return numberOfCars;
     }
@@ -280,7 +296,7 @@ public class Simulator {
         int cars = 0;
         Random random = new Random();
         if ((day == 4 &&  hour == 19) || (day == 5 && hour == 19) || (day == 6 && hour == 14)) {
-            int var = random.nextInt(100) + 200;
+            int var = random.nextInt(specialOccasionArivals / 3) + (specialOccasionArivals / 3) * 2;
             cars = var / 60;
         }
         return cars;

@@ -7,6 +7,8 @@ import Parkeersimulator.model.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import static javax.swing.JOptionPane.showInputDialog;
+
 /**
  *
  * @author Marijn, Mark, Vincent, Bart,
@@ -18,6 +20,7 @@ public class Menu extends Controller implements ActionListener {
     private JButton btn_advance10;
     private JButton btn_advance100;
     private JButton btn_changeView;
+    private JButton btn_advanceX;
 
 
     private Boolean runWorkerRunning = false;
@@ -29,10 +32,13 @@ public class Menu extends Controller implements ActionListener {
         btn_advance10.addActionListener(this);
         btn_advance100 = new JButton("Advance 100");
         btn_advance100.addActionListener(this);
+        btn_advanceX = new JButton("Advance X");
+        btn_advanceX.addActionListener(this);
         btn_changeView = new JButton("Change View");
         btn_changeView.addActionListener(this);
         add(btn_advance10);
         add(btn_advance100);
+        add(btn_advanceX);
         add(btn_changeView);
     }
 
@@ -46,6 +52,11 @@ public class Menu extends Controller implements ActionListener {
         }
         if (e.getSource() == btn_changeView) {
             parkeergarage.changeView();
+        }
+        if (e.getSource() == btn_advanceX) {
+
+            int steps= Integer.parseInt(showInputDialog("Amount of minutes to run: "));
+            new RunWorker(simulator, steps, this).execute();
         }
     }
 

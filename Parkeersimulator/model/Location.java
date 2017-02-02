@@ -21,7 +21,7 @@ public class Location {
         this.floor = floor;
         this.row = row;
         this.place = place;
-        if (row == 1 && floor == 0) {
+        if (row < 6 && floor == 0) {
             reserved = true;
         }
     }
