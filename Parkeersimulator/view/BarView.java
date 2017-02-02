@@ -50,8 +50,6 @@ public class BarView extends View {
             bars.add(new Bar(0, "Entrance Pass", "entrancepass", colors.get(colorindex)));
             colorindex++;
             bars.add(new Bar(0, "Missed Customers", "missedcustomers", colors.get(colorindex)));
-            colorindex++;
-
 
             setLayout((new BoxLayout(this, BoxLayout.PAGE_AXIS)));
             setBorder(BorderFactory.createEmptyBorder(50, 50, 100, 100));
