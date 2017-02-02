@@ -114,25 +114,25 @@ public class BarView extends View {
 
             for (Bar bar:bars) {
 
-                if (bar.getName() == "totalcars") {
+                if (bar.getName().equals("totalcars")) {
                     bar.setValue(totalcars);
                 }
-                else if (bar.getName() == "openspots") {
+                else if (bar.getName().equals("openspots")) {
                     bar.setValue(openspots);
                 }
-                else if (bar.getName() == "totalAD_HOC") {
+                else if (bar.getName().equals("totalAD_HOC")) {
                     bar.setValue(totalAD_HOC);
                 }
-                else if (bar.getName() == "totalParkingPass") {
+                else if (bar.getName().equals("totalParkingPass")) {
                     bar.setValue(totalParkingPass);
                 }
-                else if (bar.getName() == "entranceadhoc") {
+                else if (bar.getName().equals("entranceadhoc")) {
                     bar.setValue(entrancequeue);
                 }
-                else if (bar.getName() == "entrancepass") {
+                else if (bar.getName().equals("entrancepass")) {
                     bar.setValue(exitqueue);
                 }
-                else if (bar.getName() == "missedcustomers") {
+                else if (bar.getName().equals("missedcustomers")) {
                     bar.setValue(missedcustomers);
                 }
             }
