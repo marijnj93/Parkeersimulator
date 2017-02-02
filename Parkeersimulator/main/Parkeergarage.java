@@ -49,15 +49,19 @@ public class Parkeergarage {
         if (view.isDisplayable()) {
             frame.remove(view);
 
-            if (view.getType() == "TextView") {
-                view = new CarParkView(simulator.getSimulatorView());
-            } else if (view.getType() == "CarParkView") {
-                view = new BarView(simulator.getSimulatorView());
-            } else if (view.getType() == "BarView") {
-                view = new PieView(simulator.getSimulatorView());
-            } else if (view.getType() == "PieView") {
-                frame.getContentPane().add(settings, BorderLayout.CENTER);
-                break setviewloop;
+            switch (view.getType()) {
+                case "TextView":
+                    view = new CarParkView(simulator.getSimulatorView());
+                    break;
+                case "CarParkView":
+                    view = new BarView(simulator.getSimulatorView());
+                    break;
+                case "BarView":
+                    view = new PieView(simulator.getSimulatorView());
+                    break;
+                case "PieView":
+                    frame.getContentPane().add(settings, BorderLayout.CENTER);
+                    break setviewloop;
             }
             simulator.getSimulatorView().setView(view);
             frame.getContentPane().add(view, BorderLayout.CENTER);
