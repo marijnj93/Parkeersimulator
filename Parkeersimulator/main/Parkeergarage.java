@@ -5,7 +5,6 @@ import Parkeersimulator.view.*;
 import Parkeersimulator.controller.*;
 import java.awt.*;
 import javax.swing.*;
-import javax.swing.border.Border;
 
 /**
  *

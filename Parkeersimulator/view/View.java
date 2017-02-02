@@ -1,7 +1,6 @@
 package Parkeersimulator.view;
 import javax.swing.*;
 import Parkeersimulator.model.*;
-
 import java.awt.*;
 
 /**

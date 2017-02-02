@@ -3,8 +3,6 @@ package Parkeersimulator.view;
 import Parkeersimulator.model.Car;
 import Parkeersimulator.model.Location;
 import Parkeersimulator.model.SimulatorView;
-
-import javax.swing.*;
 import java.awt.*;
 
 /**

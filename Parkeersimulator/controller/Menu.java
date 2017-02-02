@@ -1,9 +1,9 @@
 package Parkeersimulator.controller;
+
 import javax.swing.*;
 
 import Parkeersimulator.main.Parkeergarage;
 import Parkeersimulator.model.*;
-
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 

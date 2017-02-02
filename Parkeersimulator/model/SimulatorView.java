@@ -1,10 +1,6 @@
 package Parkeersimulator.model;
 
 import Parkeersimulator.view.*;
-import Parkeersimulator.model.Car;
-import Parkeersimulator.model.Location;
-
-import javax.swing.*;
 import java.awt.*;
 
 /**
