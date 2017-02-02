@@ -133,7 +133,7 @@ public class SimulatorView {
             for (int row = 0; row < getNumberOfRows(); row++) {
                 for (int place = 0; place < getNumberOfPlaces(); place++) {
                     Location location = new Location(floor, row, place);
-                    if (getCarAt(location) == null && location.reserved() == false) {
+                    if (getCarAt(location) == null && !location.reserved()) {
                         return location;
                     }
                 }
