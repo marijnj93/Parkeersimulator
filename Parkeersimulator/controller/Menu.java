@@ -44,10 +44,10 @@ public class Menu extends Controller implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        if (e.getSource() == btn_advance10 && runWorkerRunning == false) {
+        if (e.getSource() == btn_advance10 && !runWorkerRunning) {
             new RunWorker(simulator, 10, this).execute();
         }
-        if (e.getSource() == btn_advance100 && runWorkerRunning == false) {
+        if (e.getSource() == btn_advance100 && !runWorkerRunning) {
             new RunWorker(simulator, 100, this).execute();
         }
         if (e.getSource() == btn_changeView) {
