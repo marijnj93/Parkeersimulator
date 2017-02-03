@@ -7,27 +7,25 @@ import java.awt.*;
 import javax.swing.*;
 
 /**
- *
+ * Class Parkeergarage, used to make a new simulator, views, settings and to change views.
  * @author Marijn, Mark, Vincent, Bart,
  * @version 03-02-2017
  */
-
 //Maak dit misschien een JFrame (extending)
 public class Parkeergarage {
-
-
     private Simulator simulator;
     private View view;
-    private Menu menu;
     private Settings settings;
-
     private JFrame frame;
 
+    /**
+     * Create a new parkeergarage.
+     */
     public Parkeergarage() {
         simulator = new Simulator();
         view = new CarParkView(simulator.getSimulatorView());
         simulator.getSimulatorView().setView(view);
-        menu = new Menu(simulator, this);
+        Menu menu = new Menu(simulator, this);
         settings = new Settings(simulator, this);
 
         frame = new JFrame();
@@ -38,10 +36,11 @@ public class Parkeergarage {
         frame.setLocation(dim.width/2-frame.getSize().width/2, dim.height/2-frame.getSize().height/2);
         frame.setVisible(true);
         simulator.getSimulatorView().updateView();
-
-
     }
 
+    /**
+     * Change the view of the simulator.
+     */
     public void changeView() {
         if (view.isDisplayable()) {
             frame.remove(view);
@@ -68,11 +67,14 @@ public class Parkeergarage {
             simulator.getSimulatorView().setView(view);
             frame.getContentPane().add(view, BorderLayout.CENTER);
         }
-
         frame.revalidate();
         frame.pack();
         simulator.getSimulatorView().updateView();
     }
+
+    /**
+     * Switch to the change settings view.
+     */
     public void changeSettings() {
         frame.remove(view);
         settings = new Settings(simulator, this);
