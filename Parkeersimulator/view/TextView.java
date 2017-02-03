@@ -1,24 +1,20 @@
 package Parkeersimulator.view;
 import Parkeersimulator.model.*;
 import javax.swing.*;
-import javax.swing.border.Border;
 import java.awt.*;
 import java.util.ArrayList;
 
 /**
- *
+ * A view with text displaying information.
  * @author Marijn, Mark, Vincent, Bart,
  * @version 03-02-2017
  */
 public class TextView extends View {
-
+    /*
     private JLabel lbl_OpenSpots;
-    private JLabel lbl_Places;
-    private JLabel lbl_Floors;
-    private JLabel lbl_Rows;
-    private JLabel lbl_tSpots;
     private JLabel lbl_totalAD_HOC;
     private JLabel lbl_totalParkingPass;
+*/
 
     private JLabel lbl_adhocProfit;
     private JLabel lbl_passProfit;
@@ -29,9 +25,14 @@ public class TextView extends View {
     private ArrayList<JLabel> labels;
 
 
+
+    /**
+     * Contructor of TextView.
+     * @param simulatorView, The simulatorView to use for the TextView.
+     */
     public TextView(SimulatorView simulatorView) {
         super(simulatorView, "TextView");
-        labels = new ArrayList<JLabel>();
+        ArrayList<JLabel> labels = new ArrayList<>();
 
         //setBackground(Color.red);
 
@@ -41,7 +42,7 @@ public class TextView extends View {
         /*
         int totalspots = simulatorView.getNumberOfFloors() * simulatorView.getNumberOfRows() * simulatorView.getNumberOfPlaces();
 
-        lbl_tSpots = new JLabel("Number of total spots: " + totalspots);
+        JLabel lbl_tSpots = new JLabel("Number of total spots: " + totalspots);
         labels.add(lbl_tSpots);
 
 
@@ -60,13 +61,13 @@ public class TextView extends View {
         //Empty Row
         labels.add(new JLabel(" "));
 
-        lbl_Places = new JLabel("Number of spots/row: " + simulatorView.getNumberOfPlaces());
+        JLabel lbl_Places = new JLabel("Number of spots/row: " + simulatorView.getNumberOfPlaces());
         labels.add(lbl_Places);
 
-        lbl_Rows = new JLabel("Number of rows/floor: " + simulatorView.getNumberOfRows());
+        JLabel lbl_Rows = new JLabel("Number of rows/floor: " + simulatorView.getNumberOfRows());
         labels.add(lbl_Rows);
 
-        lbl_Floors = new JLabel("Number of floors: " + simulatorView.getNumberOfFloors());
+        JLabel lbl_Floors = new JLabel("Number of floors: " + simulatorView.getNumberOfFloors());
         labels.add(lbl_Floors);
         */
         lbl_adhocProfit = new JLabel("Profit made from regular customers: " + simulatorView.getProfit("AD_HOC"));
@@ -81,13 +82,15 @@ public class TextView extends View {
         lbl_totalProfit = new JLabel("Total profit made: " + simulatorView.getProfit("TOTAL"));
         labels.add(lbl_totalProfit);
         //Zet de font size en maak zichtbaar voor elke label
-        for (JLabel label:labels) {
+        for (JLabel label: labels) {
             label.setFont(new Font(label.getName(), Font.PLAIN, 30));
             add(label);
         }
-
     }
 
+    /**
+     * Update the view with up-to-date information of the open spots and cars.
+     */
     public void updateView() {
         /*
         lbl_OpenSpots.setText("Open spots: " + simulatorView.getNumberOfOpenSpots());
