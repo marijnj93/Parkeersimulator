@@ -144,7 +144,7 @@ public class Simulator {
     }
 
     /**
-     * Handle the reservatings of specific places for ReservedCars.
+     * Handle the reservations of specific places for ReservedCars.
      */
     private void handleReservations() {
         Random random = new Random();
@@ -311,7 +311,7 @@ public class Simulator {
         int skipped = 0;
         for (int i = 0; i < numberOfCars; i++) {
             int carswaiting = 0;
-            if (type == PASS) {
+            if (type.equals(PASS)) {
                 carswaiting = entrancePassQueue.carsInQueue();
             }
             else {
@@ -328,10 +328,10 @@ public class Simulator {
         numberOfCars -= skipped;
         //Zorgt ervoor dat er niet meer parking passes komen te staan dan dat er passen zijn..
         int parkedParkingPass = simulatorView.getTotalCars("ParkingPass" ) + entrancePassQueue.carsInQueue();
-        if (parkedParkingPass >= PassHolders && type == PASS) {
+        if (parkedParkingPass >= PassHolders && type.equals(PASS)) {
             return 0;
         }
-        else if (type == PASS && numberOfCars >= (PassHolders - parkedParkingPass)) {
+        else if (type.equals(PASS) && numberOfCars >= (PassHolders - parkedParkingPass)) {
             return PassHolders - parkedParkingPass;
         }
         return numberOfCars;
