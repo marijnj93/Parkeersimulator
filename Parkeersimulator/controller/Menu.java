@@ -110,7 +110,7 @@ class RunWorker extends SwingWorker<Void, Void>
     /**
      * Runs a simulator.
      * @return null
-     * @throws Exception, An exception to trow.
+     * @throws Exception, An exception to throw.
      */
     @Override
     protected Void doInBackground() throws Exception
