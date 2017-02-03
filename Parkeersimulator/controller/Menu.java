@@ -1,33 +1,31 @@
 package Parkeersimulator.controller;
 
 import javax.swing.*;
-
 import Parkeersimulator.main.Parkeergarage;
 import Parkeersimulator.model.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
 import static javax.swing.JOptionPane.showInputDialog;
 
 /**
- *
- * @author Marijn, Mark, Vincent, Bart,
- * @since 26-01-2017
+ * A class to with a menu containing buttons.
+ * @author Marijn, Mark, Vincent, Bart.
+ * @version 03-02-2017.
  */
 public class Menu extends Controller implements ActionListener {
-
-
     private JButton btn_advance10;
     private JButton btn_advance100;
     private JButton btn_changeView;
     private JButton btn_advanceX;
-
-
     private Boolean runWorkerRunning = false;
 
+    /**
+     * Create a menu.
+     * @param simulator, A simulator to use in the menu.
+     * @param parkeergarage, A parkeergarage to use in the menu.
+     */
     public Menu(Simulator simulator, Parkeergarage parkeergarage)  {
         super(simulator, parkeergarage);
-
         btn_advance10 = new JButton("Advance 10");
         btn_advance10.addActionListener(this);
         btn_advance100 = new JButton("Advance 100");
@@ -42,6 +40,10 @@ public class Menu extends Controller implements ActionListener {
         add(btn_changeView);
     }
 
+    /**
+     * Create an ActionEvent to use to check for actions.
+     * @param e, An ActionEvent.
+     */
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == btn_advance10 && !runWorkerRunning) {
@@ -64,26 +66,44 @@ public class Menu extends Controller implements ActionListener {
         }
     }
 
-    public void setWorkerRunning(Boolean bool) {
+    /**
+     * Sets a boolean to check if a RunWorker is running.
+     * @param bool, true if a RunWorker is running, else false.
+     */
+    void setWorkerRunning(Boolean bool) {
         runWorkerRunning = bool;
     }
 }
 
-
-//Misschien zorgen dat de threadcount niet te hoog wordt...
-
+// Misschien zorgen dat de threadcount niet te hoog wordt...
 //SwingWorker die de simulatie (het run() process) op een andere - niet EDT - thread uitvoert zodat de GUI niet hangt.
+
+/**
+ * A class used as a RunWorker.
+ */
 class RunWorker extends SwingWorker<Void, Void>
 {
     private Simulator simulator;
     private int steps = 0;
     private Menu menu;
 
-    public RunWorker(Simulator simulator, int steps, Menu menu) {
+    /**
+     * Create a RunWorker.
+     * @param simulator, A simulator to run.
+     * @param steps, how many ticks/steps a simulator must run.
+     * @param menu, The menu containing buttons.
+     */
+    RunWorker(Simulator simulator, int steps, Menu menu) {
      this.simulator = simulator;
      this.steps = steps;
      this.menu = menu;
     }
+
+    /**
+     * Runs a simulator.
+     * @return null
+     * @throws Exception, An exception to trow.
+     */
     @Override
     protected Void doInBackground() throws Exception
     {
@@ -92,6 +112,9 @@ class RunWorker extends SwingWorker<Void, Void>
         return null;
     }
 
+    /**
+     * Set setWorkerRunning to false, stopping a worker.
+     */
     protected void done()
     {
         menu.setWorkerRunning(false);
