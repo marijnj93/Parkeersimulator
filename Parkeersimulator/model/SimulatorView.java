@@ -2,7 +2,6 @@ package Parkeersimulator.model;
 
 import Parkeersimulator.view.*;
 import java.awt.*;
-import java.util.ArrayList;
 
 /**
  *
@@ -18,14 +17,13 @@ public class SimulatorView {
     private Car[][][] cars;
     private Simulator simulator;
 
-
     /**
      *
      * @param numberOfFloors, The number of floors.
      * @param numberOfRows, the number of rows.
      * @param numberOfPlaces, the number of places.
      */
-    public SimulatorView(int numberOfFloors, int numberOfRows, int numberOfPlaces, Simulator simulator) {
+    SimulatorView(int numberOfFloors, int numberOfRows, int numberOfPlaces, Simulator simulator) {
         this.numberOfFloors = numberOfFloors;
         this.numberOfRows = numberOfRows;
         this.numberOfPlaces = numberOfPlaces;
@@ -69,7 +67,7 @@ public class SimulatorView {
      *
      * @return numberOfOpenSpots, The number of open spots.
      */
-    public int getNumberOfOpenSpots(){
+    int getNumberOfOpenSpots(){
     	return numberOfOpenSpots;
     }
 
@@ -203,6 +201,12 @@ public class SimulatorView {
         return true;
     }
 
+    /**
+     *
+     * @param type
+     * @return total
+     */
+
     public int getTotalCars(String type) {
         int total = 0;
         Color color;
@@ -225,6 +229,14 @@ public class SimulatorView {
         }
         return total;
     }
+
+    /**
+     *
+     * @param loc1
+     * @param loc2
+     * @return closest
+     */
+
     public Location calculateClosestLocation(Location loc1, Location loc2) {
         Location closest = null;
         if (loc1.getFloor() < loc2.getFloor()) {
@@ -241,13 +253,31 @@ public class SimulatorView {
         }
         return closest;
     }
+
+    /**
+     *
+     * @param type
+     * @return profit
+     */
+
     public double getProfit(String type) {
        return simulator.getProfit(type);
     }
 
+    /**
+     *
+     * @param type
+     * @return queue
+     */
+
     public CarQueue getQueue(String type) {
         return simulator.getQueue(type);
     }
+
+    /**
+     *
+     * @return missed customers
+     */
     public int getMissedCustomers() {
         return simulator.getMissedCustomers();
     }
