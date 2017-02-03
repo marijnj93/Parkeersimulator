@@ -23,7 +23,7 @@ public abstract class Garageview extends View {
         g.setColor(Color.white);
         g.fillRect(0, 40, 130, 30);
         g.setColor(Color.black);
-        int profit = (int)simulatorView.getProfit() / 100;
+        int profit = (int)simulatorView.getProfit("TOTAL") / 100;
         g.drawString("Total profit: $" + (profit), 20, 60); //Profit is in centen, dus delen door 100
     }
     public void displayType(Graphics g) {

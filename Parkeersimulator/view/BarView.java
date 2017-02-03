@@ -12,6 +12,7 @@ import java.util.Random;
  * @version 03-02-2017
  */
 public class BarView extends Garageview {
+
     private ArrayList<Bar> bars = new ArrayList<>();
 
     /**
@@ -29,19 +30,19 @@ public class BarView extends Garageview {
 
         int colorindex = 0;
         //Maak de bars en stel de naam en ondertiteling in.
-        bars.add(new Bar(0, "ADHOC cars", "totalAD_HOC", colors.get(colorindex)));
-        colorindex++;
-        bars.add(new Bar(0, "ParkingPass cars", "totalParkingPass", colors.get(colorindex)));
-        colorindex++;
-        bars.add(new Bar(0, "Parked cars", "totalcars", colors.get(colorindex)));
-        colorindex++;
-        bars.add(new Bar(0, "Open spots", "openspots", colors.get(colorindex)));
-        colorindex++;
-        bars.add(new Bar(0, "Entrance ADHOC", "entranceadhoc", colors.get(colorindex)));
-        colorindex++;
-        bars.add(new Bar(0, "Entrance Pass", "entrancepass", colors.get(colorindex)));
-        colorindex++;
-        bars.add(new Bar(0, "Missed Customers", "missedcustomers", colors.get(colorindex)));
+                bars.add(new Bar(0, "Regular cars", "totalAD_HOC", colors.get(colorindex)));
+                colorindex++;
+                bars.add(new Bar(0, "Pass holder cars", "totalParkingPass", colors.get(colorindex)));
+                colorindex++;
+                bars.add(new Bar(0, "Parked cars", "totalcars", colors.get(colorindex)));
+                colorindex++;
+                bars.add(new Bar(0, "Open spots", "openspots", colors.get(colorindex)));
+                colorindex++;
+                bars.add(new Bar(0, "Regular entrance", "entranceadhoc", colors.get(colorindex)));
+                colorindex++;
+                bars.add(new Bar(0, "Pass holder entrance", "entrancepass", colors.get(colorindex)));
+                colorindex++;
+                bars.add(new Bar(0, "Missed customers", "missedcustomers", colors.get(colorindex)));
 
         setLayout((new BoxLayout(this, BoxLayout.PAGE_AXIS)));
         setBorder(BorderFactory.createEmptyBorder(50, 50, 100, 100));

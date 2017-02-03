@@ -10,9 +10,21 @@ import java.util.ArrayList;
  * @version 03-02-2017
  */
 public class TextView extends View {
+    /*
     private JLabel lbl_OpenSpots;
     private JLabel lbl_totalAD_HOC;
     private JLabel lbl_totalParkingPass;
+*/
+
+    private JLabel lbl_adhocProfit;
+    private JLabel lbl_passProfit;
+    private JLabel lbl_reservationProfit;
+    private JLabel lbl_totalProfit;
+
+
+    private ArrayList<JLabel> labels;
+
+
 
     /**
      * Contructor of TextView.
@@ -24,9 +36,10 @@ public class TextView extends View {
 
         //setBackground(Color.red);
 
-        setLayout((new BoxLayout(this, BoxLayout.PAGE_AXIS)));
+        setLayout((new GridLayout(0, 1)));
         setBorder(BorderFactory.createEmptyBorder(50, 50, 100, 100));
 
+        /*
         int totalspots = simulatorView.getNumberOfFloors() * simulatorView.getNumberOfRows() * simulatorView.getNumberOfPlaces();
 
         JLabel lbl_tSpots = new JLabel("Number of total spots: " + totalspots);
@@ -56,7 +69,18 @@ public class TextView extends View {
 
         JLabel lbl_Floors = new JLabel("Number of floors: " + simulatorView.getNumberOfFloors());
         labels.add(lbl_Floors);
+        */
+        lbl_adhocProfit = new JLabel("Profit made from regular customers: " + simulatorView.getProfit("AD_HOC"));
+        labels.add(lbl_adhocProfit);
 
+        lbl_passProfit = new JLabel("Profit made from parking passes: " + simulatorView.getProfit("PASS"));
+        labels.add(lbl_passProfit);
+
+        lbl_reservationProfit = new JLabel("Profit made from reservations: " + simulatorView.getProfit("RESERVATION"));
+        labels.add(lbl_reservationProfit);
+
+        lbl_totalProfit = new JLabel("Total profit made: " + simulatorView.getProfit("TOTAL"));
+        labels.add(lbl_totalProfit);
         //Zet de font size en maak zichtbaar voor elke label
         for (JLabel label: labels) {
             label.setFont(new Font(label.getName(), Font.PLAIN, 30));
@@ -68,8 +92,14 @@ public class TextView extends View {
      * Update the view with up-to-date information of the open spots and cars.
      */
     public void updateView() {
+        /*
         lbl_OpenSpots.setText("Open spots: " + simulatorView.getNumberOfOpenSpots());
         lbl_totalAD_HOC.setText("Amount of normal cars: " + simulatorView.getTotalCars("AD_HOC"));
         lbl_totalParkingPass.setText("Amount of parkingpass-cars: " + simulatorView.getTotalCars("ParkingPass"));
+        */
+        lbl_adhocProfit.setText("Profit made from regular customers: $" + Math.round(simulatorView.getProfit("AD_HOC")/ 100));
+        lbl_passProfit.setText("Profit made from parking passes: $" + Math.round(simulatorView.getProfit("PASS") / 100));
+        lbl_reservationProfit.setText("Profit made from reservations: $" + Math.round(simulatorView.getProfit("RESERVATION") / 100));
+        lbl_totalProfit.setText("Total profit made: $" + Math.round(simulatorView.getProfit("TOTAL") / 100));
     }
 }

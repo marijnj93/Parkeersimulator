@@ -45,13 +45,14 @@ public class Simulator {
 
     private int tickPause = 100;
 
-    //Misschien setters voor maken.
+
     private int weekDayArrivals= 150; // average number of arriving cars per hour
     private int weekendArrivals = 250; // average number of arriving cars per hour
     private int weekDayPassArrivals; // average number of arriving cars per hour
     private int weekendPassArrivals; // average number of arriving cars per hour
     private int specialOccasionArivals = 400;
     private int newReservations = 4; //Average amount of reservations per hour
+
 
     private int enterSpeed = 3; // number of cars that can enter per minute
     private int paymentSpeed = 7; // number of cars that can pay per minute
@@ -330,7 +331,7 @@ public class Simulator {
         if (parkedParkingPass >= PassHolders && type == PASS) {
             return 0;
         }
-        else if (type == PASS && numberOfCars >= parkedParkingPass) {
+        else if (type == PASS && numberOfCars >= (PassHolders - parkedParkingPass)) {
             return PassHolders - parkedParkingPass;
         }
         return numberOfCars;
@@ -423,12 +424,23 @@ public class Simulator {
         days.put(6, "Sunday");
         return days.get(day) + "  " + hour + ":" + minute;
     }
-
     /**
      * Get the total profit by combining the profit from: adhoc, pass and reserving cars.
      * @return The total profit.
+     * @param type, the type of profit.
      */
-    double getProfit() {
-        return adhocprofit + passprofit + reservationprofit;
+    public double getProfit(String type) {
+        switch (type) {
+            case "AD_HOC":
+                return adhocprofit;
+            case "PASS":
+                return passprofit;
+            case "RESERVATION":
+                return reservationprofit;
+            case "TOTAL":
+                return adhocprofit + passprofit + reservationprofit;
+        }
+        return 0.0;
+
     }
 }
