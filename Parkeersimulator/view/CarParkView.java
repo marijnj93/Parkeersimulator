@@ -4,6 +4,7 @@ import Parkeersimulator.model.Car;
 import Parkeersimulator.model.Location;
 import Parkeersimulator.model.SimulatorView;
 import java.awt.*;
+import java.lang.reflect.Array;
 
 /**
  *
@@ -44,6 +45,7 @@ public class CarParkView extends Garageview {
             // Rescale the previous image.
             g.drawImage(carParkImage, 0, 50, currentSize.width, currentSize.height, null);
         }
+        drawLegenda(g);
         displayTime(g);
         displayProfit(g);
         displayType(g);
@@ -93,6 +95,31 @@ public class CarParkView extends Garageview {
                 20 - 1,
                 10 - 1); // TODO use dynamic size or constants
     }
+    private void drawLegenda(Graphics g) {
 
+        int x = getWidth() - 350;
+        int y = getHeight() - 250;
+        g.setColor(Color.white);
+        g.fillRect(x, y, 325, 150);
+        g.setColor(Color.black);
+        Color[] colors = new Color[5];
+        colors[0] = Color.blue; colors[1] = Color.red; colors[2] = Color.gray; colors[3] = Color.orange; colors[4] = Color.green;
+
+        int i = 1;
+        for (Color color : colors) {
+            g.setColor(color);
+            g.fillRect(x + 20, y + 20 * i, 25, 15);
+            i++;
+        }
+        g.setColor(Color.black);
+        Font oldfont = g.getFont();
+        g.setFont(new Font("TimesRoman", Font.PLAIN, 16));
+        g.drawString("Pass car", x + 60, y + 35);
+        g.drawString("Normal car", x + 60, y + 55);
+        g.drawString("Empty parking pass spot", x + 60, y + 75);
+        g.drawString("Online reserved spot (unoccupied)", x + 60, y + 95);
+        g.drawString("Online reserved spot (occupied)", x + 60, y + 115);
+        g.setFont(oldfont);
+    }
 
 }
