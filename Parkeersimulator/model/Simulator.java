@@ -52,7 +52,7 @@ public class Simulator {
     int weekDayPassArrivals; // average number of arriving cars per hour
     int weekendPassArrivals; // average number of arriving cars per hour
     int specialOccasionArivals = 400;
-    int newReservations = 4; //Average amount of reservations per hour
+    int newReservations = 2; //Average amount of reservations per hour
 
     int enterSpeed = 3; // number of cars that can enter per minute
     int paymentSpeed = 7; // number of cars that can pay per minute
@@ -289,7 +289,7 @@ public class Simulator {
         if (parkedParkingPass >= PassHolders && type == PASS) {
             return 0;
         }
-        else if (type == PASS && numberOfCars >= parkedParkingPass) {
+        else if (type == PASS && numberOfCars >= (PassHolders - parkedParkingPass)) {
             return PassHolders - parkedParkingPass;
         }
         return numberOfCars;
@@ -368,7 +368,17 @@ public class Simulator {
         days.put(6, "Sunday");
         return days.get(day) + "  " + hour + ":" + minute;
     }
-    public double getProfit() {
-        return adhocprofit + passprofit + reservationprofit;
+    public double getProfit(String type) {
+        switch (type) {
+            case "AD_HOC":
+                return adhocprofit;
+            case "PASS":
+                return passprofit;
+            case "RESERVATION":
+                return reservationprofit;
+            case "TOTAL":
+                return adhocprofit + passprofit + reservationprofit;
+        }
+        return 0.0;
     }
 }

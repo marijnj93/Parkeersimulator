@@ -241,6 +241,9 @@ public class SimulatorView {
         }
         return closest;
     }
+    public double getProfit(String type) {
+       return simulator.getProfit(type);
+    }
 
     public CarQueue getQueue(String type) {
         return simulator.getQueue(type);
@@ -249,5 +252,5 @@ public class SimulatorView {
         return simulator.getMissedCustomers();
     }
     public String getTime() {return simulator.getTime();}
-    public double getProfit() {return simulator.getProfit();}
+
 }
