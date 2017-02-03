@@ -4,7 +4,6 @@ import java.awt.*;
 import java.util.Random;
 
 /**
- *
  * @author Marijn, Mark, Vincent, Bart,
  * @version 03-02-2017
  */
@@ -16,9 +15,10 @@ public abstract class Car {
     private boolean hasToPay;
     private int stayTime;
     /**
-     * Constructor for objects of class Car
+     * Constructor for objects of class Car.
+     * Create a random staytime.
      */
-    public Car() {
+    Car() {
         Random random = new Random();
         int stayMinutes = (int) (15 + random.nextFloat() * 3 * 60);
         this.setMinutesLeft(stayMinutes);
@@ -26,74 +26,72 @@ public abstract class Car {
     }
 
     /**
-     *
-     * @return location, The location.
+     * @return location, The location of the car.
      */
-    public Location getLocation() {
+    Location getLocation() {
         return location;
     }
 
     /**
-     *
-     * @param location, The location.
+     * @param location, The location to place the car.
      */
-    public void setLocation(Location location) {
+    void setLocation(Location location) {
         this.location = location;
     }
 
     /**
-     *
-     * @return minutesLeft.
+     * @return minutesLeft, Amount of minutes before a car leaves.
      */
-    public int getMinutesLeft() {
+    int getMinutesLeft() {
         return minutesLeft;
     }
 
     /**
-     *
-     * @param minutesLeft
+     * @param minutesLeft, Amount of minutes before a car leaves.
      */
-    public void setMinutesLeft(int minutesLeft) {
+    void setMinutesLeft(int minutesLeft) {
         this.minutesLeft = minutesLeft;
     }
 
     /**
-     *
-     * @return isPaying
+     * @return isPaying, Used for paying cars.
      */
-    public boolean getIsPaying() {
+    boolean getIsPaying() {
         return isPaying;
     }
 
     /**
-     *
-     * @param isPaying
+     * @param isPaying, Used for paying cars.
      */
-    public void setIsPaying(boolean isPaying) {
+    void setIsPaying(boolean isPaying) {
         this.isPaying = isPaying;
     }
 
     /**
-     *
-     * @return hasToPay
+     * @return hasToPay, Used for checking if a car needs to pay.
      */
-    public boolean getHasToPay() {
+    boolean getHasToPay() {
         return hasToPay;
     }
 
     /**
-     *
-     * @param hasToPay
+     * @param hasToPay, Used for checking if a car needs to pay.
      */
-    public void setHasToPay(boolean hasToPay) {
+    void setHasToPay(boolean hasToPay) {
         this.hasToPay = hasToPay;
     }
 
-    //Returns the total time the car was parked
-    public int getStayTime() {
+    /**
+     *
+     * @return stayTime, The total time a car has parked.
+     */
+    int getStayTime() {
         return stayTime;
     }
 
+    /**
+     * Decrease the time a car can stay by 1 minute.
+     */
     public void tick() {
         minutesLeft--;
     }
