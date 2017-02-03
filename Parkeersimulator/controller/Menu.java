@@ -61,7 +61,7 @@ public class Menu extends Controller implements ActionListener {
             parkeergarage.changeView();
         }
         if (e.getSource() == btn_advanceX) {
-            int steps = 0;
+            int steps;
             try {
                 steps = Integer.parseInt(showInputDialog("Amount of minutes to run: "));
                 new RunWorker(simulator, steps, this).execute();
