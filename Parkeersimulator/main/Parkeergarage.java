@@ -23,7 +23,7 @@ public class Parkeergarage {
      */
     public Parkeergarage() {
         simulator = new Simulator();
-        view = new CarParkView(simulator.getSimulatorView());
+        view = new LineView(simulator.getSimulatorView());
         simulator.getSimulatorView().setView(view);
         Menu menu = new Menu(simulator, this);
         settings = new Settings(simulator, this);
@@ -63,6 +63,9 @@ public class Parkeergarage {
                     view = new PieView(simulator.getSimulatorView());
                     break;
                 case "PieView":
+                    view = new LineView(simulator.getSimulatorView());
+                    break;
+                case "LineView":
                     view = new TextView(simulator.getSimulatorView());
                     break;
             }

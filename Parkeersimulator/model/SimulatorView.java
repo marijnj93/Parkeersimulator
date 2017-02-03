@@ -252,5 +252,8 @@ public class SimulatorView {
         return simulator.getMissedCustomers();
     }
     public String getTime() {return simulator.getTime();}
+    public String getShortTime() {
+        return simulator.getShortTime();
+    }
 
 }

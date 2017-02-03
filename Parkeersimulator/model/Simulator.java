@@ -430,6 +430,10 @@ public class Simulator {
         days.put(6, "Sunday");
         return days.get(day) + "  " + hour + ":" + minute;
     }
+    //Returns a shorter version of the time for use in linegraph.
+    String getShortTime() {
+        return hour + ":" + minute;
+    }
     /**
      * Get the total profit by combining the profit from: adhoc, pass and reserving cars.
      * @return The total profit.
