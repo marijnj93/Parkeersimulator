@@ -11,7 +11,7 @@ import java.util.Random;
  * @author Marijn, Mark, Vincent, Bart,
  * @since 26-01-2017
  */
-public class BarView extends View {
+public class BarView extends Garageview {
 
 
         private Dimension size;

@@ -17,6 +17,7 @@ public class Menu extends Controller implements ActionListener {
     private JButton btn_advance100;
     private JButton btn_changeView;
     private JButton btn_advanceX;
+    private JButton btn_Settings;
     private Boolean runWorkerRunning = false;
 
     /**
@@ -34,10 +35,14 @@ public class Menu extends Controller implements ActionListener {
         btn_advanceX.addActionListener(this);
         btn_changeView = new JButton("Change View");
         btn_changeView.addActionListener(this);
+        btn_Settings = new JButton("Settings");
+        btn_Settings.addActionListener(this);
+
         add(btn_advance10);
         add(btn_advance100);
         add(btn_advanceX);
         add(btn_changeView);
+        add(btn_Settings);
     }
 
     /**
@@ -59,10 +64,13 @@ public class Menu extends Controller implements ActionListener {
             int steps = 0;
             try {
                 steps = Integer.parseInt(showInputDialog("Amount of minutes to run: "));
+                new RunWorker(simulator, steps, this).execute();
             } catch (NumberFormatException ex) {
                 JOptionPane.showMessageDialog(new JFrame(), "Input only numbers");
             }
-            new RunWorker(simulator, steps, this).execute();
+        }
+        if (e.getSource() == btn_Settings) {
+            parkeergarage.changeSettings();
         }
     }
 

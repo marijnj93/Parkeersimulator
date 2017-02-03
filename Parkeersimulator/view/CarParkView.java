@@ -10,7 +10,7 @@ import java.awt.*;
  * @author Marijn, Mark, Vincent, Bart,
  * @since 26-01-2017
  */
-public class CarParkView extends View {
+public class CarParkView extends Garageview {
 
     private Dimension size;
     private Image carParkImage;
@@ -61,7 +61,17 @@ public class CarParkView extends View {
                 for (int place = 0; place < simulatorView.getNumberOfPlaces(); place++) {
                     Location location = new Location(floor, row, place);
                     Car car = simulatorView.getCarAt(location);
-                    Color color = car == null ? Color.white : car.getColor();
+                    Color color;
+                    if (car == null) {
+                        color = Color.white;
+                        if (location.reserved()) {
+                            color = Color.lightGray;
+                        }
+                    }
+                    else {
+                        color = car.getColor();
+                    }
+                    //Color color = car == null ? Color.white : car.getColor();
                     drawPlace(graphics, location, color);
                 }
             }

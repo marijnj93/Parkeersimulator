@@ -43,12 +43,8 @@ public class Parkeergarage {
     }
 
     public void changeView() {
-
-        //Gelabeled zodat er uit een nested loop gebroken kan worden. Loopt door alle views en controllers..
-        setviewloop:
         if (view.isDisplayable()) {
             frame.remove(view);
-
             switch (view.getType()) {
                 case "TextView":
                     view = new CarParkView(simulator.getSimulatorView());
@@ -60,8 +56,8 @@ public class Parkeergarage {
                     view = new PieView(simulator.getSimulatorView());
                     break;
                 case "PieView":
-                    frame.getContentPane().add(settings, BorderLayout.CENTER);
-                    break setviewloop;
+                    view = new TextView(simulator.getSimulatorView());
+                    break;
             }
             simulator.getSimulatorView().setView(view);
             frame.getContentPane().add(view, BorderLayout.CENTER);
@@ -73,6 +69,15 @@ public class Parkeergarage {
             frame.getContentPane().add(view, BorderLayout.CENTER);
         }
 
+        frame.revalidate();
+        frame.pack();
+        simulator.getSimulatorView().updateView();
+    }
+    public void changeSettings() {
+        frame.remove(view);
+        settings = new Settings(simulator, this);
+        //simulator.getSimulatorView().setView(settings);
+        frame.getContentPane().add(settings, BorderLayout.CENTER);
         frame.revalidate();
         frame.pack();
         simulator.getSimulatorView().updateView();
