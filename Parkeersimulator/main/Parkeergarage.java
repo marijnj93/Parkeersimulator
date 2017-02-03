@@ -34,6 +34,7 @@ public class Parkeergarage {
         frame.pack();
         Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
         frame.setLocation(dim.width/2-frame.getSize().width/2, dim.height/2-frame.getSize().height/2);
+        frame.setMinimumSize(new Dimension(1200,500));
         frame.setVisible(true);
         simulator.getSimulatorView().updateView();
     }

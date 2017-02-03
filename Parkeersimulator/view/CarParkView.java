@@ -117,8 +117,8 @@ public class CarParkView extends Garageview {
         g.drawString("Pass car", x + 60, y + 35);
         g.drawString("Normal car", x + 60, y + 55);
         g.drawString("Empty parking pass spot", x + 60, y + 75);
-        g.drawString("Online reserved spot (unoccupied)", x + 60, y + 95);
-        g.drawString("Online reserved spot (occupied)", x + 60, y + 115);
+        g.drawString("Online reserved spot (occupied)", x + 60, y + 95);
+        g.drawString("Online reserved spot (unoccupied)", x + 60, y + 115);
         g.setFont(oldfont);
     }
 
