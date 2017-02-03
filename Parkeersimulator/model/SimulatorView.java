@@ -17,14 +17,13 @@ public class SimulatorView {
     private Car[][][] cars;
     private Simulator simulator;
 
-
     /**
      *
      * @param numberOfFloors, The number of floors.
      * @param numberOfRows, the number of rows.
      * @param numberOfPlaces, the number of places.
      */
-    public SimulatorView(int numberOfFloors, int numberOfRows, int numberOfPlaces, Simulator simulator) {
+    SimulatorView(int numberOfFloors, int numberOfRows, int numberOfPlaces, Simulator simulator) {
         this.numberOfFloors = numberOfFloors;
         this.numberOfRows = numberOfRows;
         this.numberOfPlaces = numberOfPlaces;
@@ -68,7 +67,7 @@ public class SimulatorView {
      *
      * @return numberOfOpenSpots, The number of open spots.
      */
-    public int getNumberOfOpenSpots(){
+    int getNumberOfOpenSpots(){
     	return numberOfOpenSpots;
     }
 

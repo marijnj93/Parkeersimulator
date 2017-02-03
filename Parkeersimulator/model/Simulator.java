@@ -51,7 +51,7 @@ public class Simulator {
     private int weekDayPassArrivals; // average number of arriving cars per hour
     private int weekendPassArrivals; // average number of arriving cars per hour
     private int specialOccasionArivals = 400;
-    private int newReservations = 4; //Average amount of reservations per hour
+    private int newReservations = 10; //Average amount of reservations per hour
 
 
     private int enterSpeed = 3; // number of cars that can enter per minute
@@ -148,7 +148,13 @@ public class Simulator {
      */
     private void handleReservations() {
         Random random = new Random();
-        int reservations = Math.round((random.nextInt((50) + 20) * newReservations) / 100) ;
+        int reservations = 0 ;
+        for (int x = 0; x < newReservations; x++) {
+            int rand = random.nextInt(100);
+            if (rand < 0.3 * newReservations) {
+                reservations++;
+            }
+        }
         for (int i = 0; i < reservations; i++) {
             Location location = simulatorView.getFirstFreeLocation();
             if (location != null) {
