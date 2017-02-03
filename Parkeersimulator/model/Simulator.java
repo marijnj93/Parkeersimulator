@@ -257,7 +257,6 @@ public class Simulator {
      * Let cars pay.
      */
     private void carsPaying(){
-        // Let cars pay.
     	int i=0;
     	while (paymentCarQueue.carsInQueue()>0 && i < paymentSpeed){
             Car car = paymentCarQueue.removeCar();
@@ -279,7 +278,6 @@ public class Simulator {
      * Let cars leave.
      */
     private void carsLeaving(){
-        // Let cars leave.
     	int i=0;
     	while (exitCarQueue.carsInQueue()>0 && i < exitSpeed){
             exitCarQueue.removeCar();
@@ -295,7 +293,6 @@ public class Simulator {
      */
     private int getNumberOfCars(int weekDay, int weekend, String type){
         Random random = new Random();
-        // Get the average number of cars that arrive per hour.
         int averageNumberOfCarsPerHour = day < 5
                 ? weekDay
                 : weekend;
@@ -343,7 +340,6 @@ public class Simulator {
      * @param type the type of the car (normal car, or a car with a pass.
      */
     private void addArrivingCars(int numberOfCars, String type){
-        // Add the cars to the back of the queue.
     	switch(type) {
     	case AD_HOC: 
             for (int i = 0; i < numberOfCars; i++) {
@@ -371,7 +367,6 @@ public class Simulator {
      * Calculate and get getSpecialOccasionCars.
      * @return cars, The amount of extra cars during special occasions.
      */
-    //Calculates the exta cars/minute during special occasions (theater for example)
     private int getSpecialOccasionCars() {
         int cars = 0;
         Random random = new Random();
