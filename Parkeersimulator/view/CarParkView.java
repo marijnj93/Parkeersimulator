@@ -10,7 +10,7 @@ import java.awt.*;
  * @author Marijn, Mark, Vincent, Bart,
  * @since 26-01-2017
  */
-public class CarParkView extends View {
+public class CarParkView extends Garageview {
 
     private Dimension size;
     private Image carParkImage;

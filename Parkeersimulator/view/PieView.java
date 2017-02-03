@@ -11,7 +11,7 @@ import java.util.ArrayList;
  * @author Marijn, Mark, Vincent, Bart,
  * @since 26-01-2017
  */
-public class PieView extends View {
+public class PieView extends Garageview {
     private Dimension size;
     private ArrayList<Slice> slices = new ArrayList<Slice>();
     private int totalvalue = 0;
