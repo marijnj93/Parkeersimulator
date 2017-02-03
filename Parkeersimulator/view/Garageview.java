@@ -5,7 +5,8 @@ import Parkeersimulator.model.SimulatorView;
 import java.awt.*;
 
 /**
- * Created by Jeronimo on 2/3/2017.
+ * @author Marijn, Mark, Vincent, Bart,
+ * @version 03-02-2017
  */
 public abstract class Garageview extends View {
 

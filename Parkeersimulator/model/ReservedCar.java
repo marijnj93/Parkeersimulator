@@ -4,7 +4,8 @@ import java.awt.*;
 import java.util.Random;
 
 /**
- * Created by Jeronimo on 2/2/2017.
+ * @author Marijn, Mark, Vincent, Bart,
+ * @version 03-02-2017
  */
 public class ReservedCar extends Car
 {

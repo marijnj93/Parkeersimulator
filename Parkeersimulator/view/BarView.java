@@ -9,7 +9,7 @@ import java.util.Random;
 /**
  *
  * @author Marijn, Mark, Vincent, Bart,
- * @since 26-01-2017
+ * @version 03-02-2017
  */
 public class BarView extends Garageview {
 

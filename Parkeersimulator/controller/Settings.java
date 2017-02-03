@@ -10,7 +10,7 @@ import java.util.ArrayList;
 /**
  *
  * @author Marijn, Mark, Vincent, Bart,
- * @version  26-01-2017
+ * @version 03-02-2017
  */
 public class Settings extends Controller {
     /**

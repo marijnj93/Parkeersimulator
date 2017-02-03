@@ -6,7 +6,7 @@ import Parkeersimulator.main.Parkeergarage;
  * This class is used to start the program.
  *
  * @author Marijn, Mark, Vincent, Bart,
- * @since 26-01-2017
+ * @version 03-02-2017
  */
 public class MVCRunner {
     public static void main(String[] args) {
