@@ -4,7 +4,6 @@ import Parkeersimulator.model.Car;
 import Parkeersimulator.model.Location;
 import Parkeersimulator.model.SimulatorView;
 import java.awt.*;
-import java.lang.reflect.Array;
 
 /**
  *
