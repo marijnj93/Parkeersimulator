@@ -4,6 +4,7 @@ import java.awt.*;
 import java.util.Random;
 
 /**
+ * A class for cars that have reserved a place.
  * @author Marijn, Mark, Vincent, Bart,
  * @version 03-02-2017
  */
@@ -12,19 +13,31 @@ public class ReservedCar extends Car
     private int arrivingtime;
     private int waitTime;
     private Color color = Color.green;
-    public boolean arrived = false;
+    private boolean arrived = false;
 
-
-    public ReservedCar(int time) {
+    /**
+     * Contructor for a ReservedCar.
+     * @param time, The time a car has reserved a place.
+     */
+    ReservedCar(int time) {
         super();
         arrivingtime = time;
         this.setHasToPay(true);
         Random random = new Random();
         waitTime = random.nextInt(10) + 5;
     }
+
+    /**
+     * Get the color of a ReservedCar
+     * @return color, The color of a ReservedCar.
+     */
     public Color getColor() {
         return color;
     }
+
+    /**
+     * ...
+     */
     @Override
     public void tick() {
         setMinutesLeft(getMinutesLeft() - 1);
@@ -34,10 +47,13 @@ public class ReservedCar extends Car
             color = Color.orange;
         }
     }
-    public boolean checkIfArrived() {
-        if (waitTime < 1) {
-            return true;
-        }
-        return false;
+
+    /**
+     * Check if a ReservedCar has arrived at his reserved place.
+     * @return true if a ReservedCar has at his reserved place
+     * ?.....
+     */
+    private boolean checkIfArrived() {
+        return waitTime < 1;
     }
 }

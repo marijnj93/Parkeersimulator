@@ -8,14 +8,14 @@ import java.util.Random;
  * @version 03-02-2017
  */
 public abstract class Car {
-
     private Location location;
     private int minutesLeft;
     private boolean isPaying;
     private boolean hasToPay;
     private int stayTime;
+
     /**
-     * Constructor for objects of class Car.
+     * Constructor of class Car.
      * Create a random staytime.
      */
     Car() {
@@ -26,6 +26,7 @@ public abstract class Car {
     }
 
     /**
+     * Get the location of the car.
      * @return location, The location of the car.
      */
     Location getLocation() {
@@ -33,6 +34,7 @@ public abstract class Car {
     }
 
     /**
+     * Set the location of the car.
      * @param location, The location to place the car.
      */
     void setLocation(Location location) {
@@ -40,6 +42,7 @@ public abstract class Car {
     }
 
     /**
+     * Get the remaining minutes before the car leaves.
      * @return minutesLeft, Amount of minutes before a car leaves.
      */
     int getMinutesLeft() {
@@ -47,6 +50,7 @@ public abstract class Car {
     }
 
     /**
+     * Set the remaining minutes before the car leaves.
      * @param minutesLeft, Amount of minutes before a car leaves.
      */
     void setMinutesLeft(int minutesLeft) {
@@ -54,6 +58,7 @@ public abstract class Car {
     }
 
     /**
+     * Check if a car is paying.
      * @return isPaying, Used for paying cars.
      */
     boolean getIsPaying() {
@@ -61,6 +66,7 @@ public abstract class Car {
     }
 
     /**
+     * Set that a car is paying.
      * @param isPaying, Used for paying cars.
      */
     void setIsPaying(boolean isPaying) {
@@ -68,6 +74,7 @@ public abstract class Car {
     }
 
     /**
+     * Check if a car has to pay.
      * @return hasToPay, Used for checking if a car needs to pay.
      */
     boolean getHasToPay() {
@@ -75,6 +82,7 @@ public abstract class Car {
     }
 
     /**
+     * Set that a car has to pay or does not have to pay.
      * @param hasToPay, Used for checking if a car needs to pay.
      */
     void setHasToPay(boolean hasToPay) {
@@ -82,7 +90,7 @@ public abstract class Car {
     }
 
     /**
-     *
+     * Get the total time a car has parked.
      * @return stayTime, The total time a car has parked.
      */
     int getStayTime() {

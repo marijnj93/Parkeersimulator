@@ -1,7 +1,7 @@
 package Parkeersimulator.model;
 
 /**
- *
+ * A location containing floors, rows, and places.
  * @author Marijn, Mark, Vincent, Bart,
  * @version 03-02-2017
  */
@@ -25,13 +25,18 @@ public class Location {
             reserved = true;
         }
     }
+
+    /**
+     * Check to see if a spot is reserved.
+     * @return reserved, true if reserved, false if not reserved.
+     */
     public boolean reserved() {
         return reserved;
     }
     /**
      * Implement content equality.
-     * @param obj Object.
-     * @return boolean
+     * @param obj Object, the object to check.
+     * @return true, if this object is the same as the parameter obj.
      */
     public boolean equals(Object obj) {
         if(obj instanceof Location) {
@@ -44,7 +49,7 @@ public class Location {
     }
 
     /**
-     * Return a string of the form floor,row,place.
+     * Make a string in the form of: floor, row, place.
      * @return A string representation of the location.
      */
     public String toString() {
@@ -62,6 +67,7 @@ public class Location {
     }
 
     /**
+     * Get the floor of a location.
      * @return floor, The floor of a location.
      */
     public int getFloor() {
@@ -69,6 +75,7 @@ public class Location {
     }
 
     /**
+     * Get the row of a location.
      * @return row, The row of a location.
      */
     public int getRow() {
@@ -76,10 +83,10 @@ public class Location {
     }
 
     /**
+     * Get the place of a location.
      * @return place, The place of a location.
      */
     public int getPlace() {
         return place;
     }
-
 }
