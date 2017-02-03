@@ -10,7 +10,7 @@ import java.util.Random;
  */
 public class ReservedCar extends Car
 {
-    private int arrivingtime;
+
     private int waitTime;
     private Color color = Color.green;
     private boolean arrived = false;
@@ -21,7 +21,6 @@ public class ReservedCar extends Car
      */
     ReservedCar(int time) {
         super();
-        arrivingtime = time;
         this.setHasToPay(true);
         Random random = new Random();
         waitTime = random.nextInt(10) + 5;
