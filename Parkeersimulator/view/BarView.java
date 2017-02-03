@@ -12,7 +12,7 @@ import java.util.Random;
  * @version 03-02-2017
  */
 public class BarView extends Garageview {
-    private ArrayList<Bar> bars = new ArrayList<Bar>();
+    private ArrayList<Bar> bars = new ArrayList<>();
 
     /**
      * Constructor for objects of class BarView
@@ -22,7 +22,7 @@ public class BarView extends Garageview {
         super(simulatorView, "BarView");
         new Dimension(0, 0);
 
-        ArrayList<Color>colors = new ArrayList<Color>();
+        ArrayList<Color>colors = new ArrayList<>();
         for (int i = 0; i < 50; i++) {
             colors.add(randomColor());
         }

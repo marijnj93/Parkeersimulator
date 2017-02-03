@@ -24,7 +24,7 @@ public class Settings extends Controller {
         setLayout(new GridLayout(0, 3));
         setBorder(BorderFactory.createEmptyBorder(50, 50, 100, 100));
 
-        ArrayList<Option> options = new ArrayList<Option>();
+        ArrayList<Option> options = new ArrayList<>();
         options.add(new Option("Enter speed: ", "enterSpeed"));
         options.add(new Option("Exit speed: : ", "exitSpeed"));
         options.add(new Option("Payment speed: : ", "paymentSpeed"));
