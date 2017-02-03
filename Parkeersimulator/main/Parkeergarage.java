@@ -40,10 +40,7 @@ public class Parkeergarage {
     }
 
     /**
-     *
      * This is used to start the program.
-     * @author Marijn, Mark, Vincent, Bart,
-     * @version 03-02-2017
      */
     public static void main(String[] args) {
         new Parkeergarage();
