@@ -66,6 +66,9 @@ public class Simulator {
     public void setExitSpeed(int val) {exitSpeed = val;}
     public void setTickPause(int val) {tickPause = val;}
 
+    /**
+     * Constructor to create a new simulator.
+     */
     public Simulator() {
         entranceCarQueue = new CarQueue();
         entrancePassQueue = new CarQueue();
@@ -75,16 +78,28 @@ public class Simulator {
         simulatorView = new SimulatorView(3, 6, 30, this);
     }
 
+    /**
+     * Get the simulatorView of the simulator.
+     * @return simulatorView, a view of the simulator.
+     */
     public SimulatorView getSimulatorView() {
         return simulatorView;
     }
 
+    /**
+     * Run the simulator for the specified amount of steps.
+     * @param steps, The amount of steps the simulator should run for.
+     */
     public void run(int steps) {
         for (int i = 0; i < steps; i++) {
                 tick();
         }
     }
 
+    /**
+     * Start the following tasks: Advance the time, handle the exit, update the views,
+     * handle the entrance, handle the reservations.
+     */
     private void tick() {
     	advanceTime();
     	handleExit();
@@ -97,9 +112,11 @@ public class Simulator {
         }
     	handleEntrance();
         handleReservations();
-
     }
 
+    /**
+     * Advance the time.
+     */
     private void advanceTime(){
         // Advance the time by one minute.
         minute++;
@@ -114,14 +131,20 @@ public class Simulator {
         while (day > 6) {
             day -= 7;
         }
-
     }
 
+    /**
+     * Handle cars arriving, and entering the entranceCarQueue and entrancePassQueue.
+     */
     private void handleEntrance(){
     	carsArriving();
     	carsEntering(entrancePassQueue);
     	carsEntering(entranceCarQueue);
     }
+
+    /**
+     * Handle the reservatings of specific places for ReservedCars.
+     */
     private void handleReservations() {
         Random random = new Random();
         int reservations = Math.round((random.nextInt((50) + 20) * newReservations) / 100) ;
@@ -136,18 +159,28 @@ public class Simulator {
             reservationprofit += reservationcost * 100;
         }
     }
+
+    /**
+     * Handle the exit of cars.
+     */
     private void handleExit(){
         carsReadyToLeave();
         carsPaying();
         carsLeaving();
     }
-    
+
+    /**
+     * Update the view.
+     */
     private void updateViews(){
     	simulatorView.tick();
 
         simulatorView.updateView();	
     }
-    
+
+    /**
+     * Calculate the number of cars arriving and handle them.
+     */
     private void carsArriving(){
         weekendPassArrivals = PassHolders / 3;
         weekDayPassArrivals = PassHolders / 2;
@@ -158,7 +191,7 @@ public class Simulator {
     }
 
     /**
-     *
+     * Handle the cars entering.
      * @param queue a queue for cars.
      */
     private void carsEntering(CarQueue queue){
@@ -200,7 +233,10 @@ public class Simulator {
 
         }
     }
-    
+
+    /**
+     * Handle cars that are leaving the garage.
+     */
     private void carsReadyToLeave(){
         // Add leaving cars to the payment queue.
         Car car = simulatorView.getFirstLeavingCar();
@@ -216,6 +252,9 @@ public class Simulator {
         }
     }
 
+    /**
+     * Let cars pay.
+     */
     private void carsPaying(){
         // Let cars pay.
     	int i=0;
@@ -234,7 +273,10 @@ public class Simulator {
     	passprofit += profit * 100;
 
     }
-    
+
+    /**
+     * Let cars leave.
+     */
     private void carsLeaving(){
         // Let cars leave.
     	int i=0;
@@ -295,7 +337,7 @@ public class Simulator {
     }
 
     /**
-     *
+     * Add a specific amount of arriving cars with with a type to a entrancePassQueue.
      * @param numberOfCars the number of cars
      * @param type the type of the car (normal car, or a car with a pass.
      */
@@ -316,7 +358,7 @@ public class Simulator {
     }
 
     /**
-     *
+     * Remove a car from the spot it is parked, and add it to the exitCarQueue.
      * @param car, a car.
      */
     private void carLeavesSpot(Car car){
@@ -324,6 +366,10 @@ public class Simulator {
         exitCarQueue.addCar(car);
     }
 
+    /**
+     * Calculate and get getSpecialOccasionCars.
+     * @return cars, The amount of extra cars during special occasions.
+     */
     //Calculates the exta cars/minute during special occasions (theater for example)
     private int getSpecialOccasionCars() {
         int cars = 0;
@@ -335,6 +381,11 @@ public class Simulator {
         return cars;
     }
 
+    /**
+     * Get a queue corresponding to the specified type.
+     * @param type, The type of queue.
+     * @return CarQueue, A queue corresponding to its type.
+     */
     CarQueue getQueue(String type) {
         switch (type) {
             case "entranceCarQueue":
@@ -348,9 +399,19 @@ public class Simulator {
         }
         return null;
     }
+
+    /**
+     * Get the amount of missedCustomers.
+     * @return missedCustomers, The amount of missedCustomers.
+     */
     int getMissedCustomers() {
         return missedCustomers;
     }
+
+    /**
+     * Get the day, hour and minute in a String.
+     * @return the day, hour and minute in a String
+     */
     String getTime() {
         Map days = new HashMap<Integer, String>();
         days.put(0, "Monday");
@@ -362,6 +423,11 @@ public class Simulator {
         days.put(6, "Sunday");
         return days.get(day) + "  " + hour + ":" + minute;
     }
+
+    /**
+     * Get the total profit by combining the profit from: adhoc, pass and reserving cars.
+     * @return The total profit.
+     */
     double getProfit() {
         return adhocprofit + passprofit + reservationprofit;
     }
