@@ -1,6 +1,7 @@
 package Parkeersimulator.model;
 
 import java.awt.*;
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -30,9 +31,18 @@ public class Simulator {
 
     private int PassHolders = 150;
     private int missedCustomers = 0;
-    private int profit = 0;
-    //cost/minute in centen
+    private int adhocprofit = 0;
+    private int reservationprofit = 0;
+    private double passprofit = 0;
+
+    //cost/minute in cents
     private int cost = 5;
+
+    //cost/month for a pass in euro's
+    private int passcost = 75;
+
+    //cost/reservation in euro's. Reservationparkers still pay the normal minute rate on top of this.
+    private int reservationcost = 4;
 
     private int tickPause = 100;
 
@@ -86,8 +96,9 @@ public class Simulator {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-
     	handleEntrance();
+        handleReservations();
+
     }
 
     private void advanceTime(){
@@ -111,10 +122,8 @@ public class Simulator {
     	carsArriving();
     	carsEntering(entrancePassQueue);
     	carsEntering(entranceCarQueue);
-    	handleReservations();
     }
     private void handleReservations() {
-        int reservechance = 1;
         Random random = new Random();
         int reservations = Math.round((random.nextInt((50) + 20) * newReservations) / 100) ;
         for (int i = 0; i < reservations; i++) {
@@ -124,8 +133,9 @@ public class Simulator {
                 ReservedCars.add(car);
                 simulatorView.setCarAt(simulatorView.getFirstFreeLocation(), car);
             }
+            //Multiplied by 100 because profit is tracked in cents.
+            reservationprofit += reservationcost * 100;
         }
-
     }
     private void handleExit(){
         carsReadyToLeave();
@@ -212,11 +222,18 @@ public class Simulator {
     	int i=0;
     	while (paymentCarQueue.carsInQueue()>0 && i < paymentSpeed){
             Car car = paymentCarQueue.removeCar();
-            // TODO Handle payment. (deels gedaan nu)
-            profit += cost * car.getStayTime();
+            adhocprofit += cost * car.getStayTime();
             carLeavesSpot(car);
             i++;
     	}
+    	double profit = 0.00;
+    	for (int x = 0; x < PassHolders; x++) {
+            profit += ((double)passcost/31/24/60);
+        }
+        //profit = Math.round(profit);
+        //Multiplied by 100 because profit is tracked in cents.
+    	passprofit += profit * 100;
+
     }
     
     private void carsLeaving(){
@@ -244,7 +261,6 @@ public class Simulator {
         int specialoccasioncars = getSpecialOccasionCars();
 
         // Calculate the number of cars that arrive this minute.
-        System.out.println(" " + averageNumberOfCarsPerHour);
         double standardDeviation = averageNumberOfCarsPerHour * 0.3;
         double numberOfCarsPerHour = averageNumberOfCarsPerHour + random.nextGaussian() * standardDeviation;
         int numberOfCars = (int)Math.round(numberOfCarsPerHour / 60) + specialoccasioncars;
@@ -352,7 +368,7 @@ public class Simulator {
         days.put(6, "Sunday");
         return days.get(day) + "  " + hour + ":" + minute;
     }
-    public int getProfit() {
-        return profit;
+    public double getProfit() {
+        return adhocprofit + passprofit + reservationprofit;
     }
 }

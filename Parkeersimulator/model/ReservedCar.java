@@ -18,7 +18,7 @@ public class ReservedCar extends Car
     public ReservedCar(int time) {
         super();
         arrivingtime = time;
-        this.setHasToPay(false);
+        this.setHasToPay(true);
         Random random = new Random();
         waitTime = random.nextInt(10) + 5;
     }
