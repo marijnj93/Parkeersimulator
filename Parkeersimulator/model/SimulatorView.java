@@ -2,7 +2,6 @@ package Parkeersimulator.model;
 
 import Parkeersimulator.view.*;
 import java.awt.*;
-import java.util.ArrayList;
 
 /**
  *
@@ -203,6 +202,12 @@ public class SimulatorView {
         return true;
     }
 
+    /**
+     *
+     * @param type
+     * @return total
+     */
+
     public int getTotalCars(String type) {
         int total = 0;
         Color color;
@@ -225,6 +230,14 @@ public class SimulatorView {
         }
         return total;
     }
+
+    /**
+     *
+     * @param loc1
+     * @param loc2
+     * @return closest
+     */
+
     public Location calculateClosestLocation(Location loc1, Location loc2) {
         Location closest = null;
         if (loc1.getFloor() < loc2.getFloor()) {
@@ -241,16 +254,42 @@ public class SimulatorView {
         }
         return closest;
     }
+
+    /**
+     *
+     * @param type
+     * @return profit
+     */
+
     public double getProfit(String type) {
        return simulator.getProfit(type);
     }
 
+    /**
+     *
+     * @param type
+     * @return queue
+     */
+
     public CarQueue getQueue(String type) {
         return simulator.getQueue(type);
     }
+
+    /**
+     *
+     * @return missed customers
+     */
     public int getMissedCustomers() {
         return simulator.getMissedCustomers();
     }
-    public String getTime() {return simulator.getTime();}
+
+    /**
+     *
+     * @return time
+     */
+
+    public String getTime() {
+        return simulator.getTime();
+    }
 
 }
