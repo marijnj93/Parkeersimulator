@@ -12,6 +12,12 @@ import javax.swing.*;
 abstract class Controller extends JPanel {
     Simulator simulator;
     Parkeergarage parkeergarage;
+
+    /**
+     * Constructor of Controller.
+     * @param simulator, A simulator.
+     * @param parkeergarage, A parkeergarage.
+     */
     Controller(Simulator simulator, Parkeergarage parkeergarage) {
         this.simulator = simulator;
         this.parkeergarage = parkeergarage;
