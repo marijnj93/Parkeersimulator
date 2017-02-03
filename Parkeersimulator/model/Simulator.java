@@ -1,7 +1,6 @@
 package Parkeersimulator.model;
 
 import java.awt.*;
-import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -47,16 +46,16 @@ public class Simulator {
     private int tickPause = 100;
 
     //Misschien setters voor maken.
-    int weekDayArrivals= 150; // average number of arriving cars per hour
-    int weekendArrivals = 250; // average number of arriving cars per hour
-    int weekDayPassArrivals; // average number of arriving cars per hour
-    int weekendPassArrivals; // average number of arriving cars per hour
-    int specialOccasionArivals = 400;
-    int newReservations = 4; //Average amount of reservations per hour
+    private int weekDayArrivals= 150; // average number of arriving cars per hour
+    private int weekendArrivals = 250; // average number of arriving cars per hour
+    private int weekDayPassArrivals; // average number of arriving cars per hour
+    private int weekendPassArrivals; // average number of arriving cars per hour
+    private int specialOccasionArivals = 400;
+    private int newReservations = 4; //Average amount of reservations per hour
 
-    int enterSpeed = 3; // number of cars that can enter per minute
-    int paymentSpeed = 7; // number of cars that can pay per minute
-    int exitSpeed = 6; // number of cars that can leave per minute
+    private int enterSpeed = 3; // number of cars that can enter per minute
+    private int paymentSpeed = 7; // number of cars that can pay per minute
+    private int exitSpeed = 6; // number of cars that can leave per minute
 
     public void setWeekDayArrivals(int val) {weekDayArrivals = val;}
     public void setWeekendArrivals(int val) {weekendArrivals = val;}
@@ -72,7 +71,7 @@ public class Simulator {
         entrancePassQueue = new CarQueue();
         paymentCarQueue = new CarQueue();
         exitCarQueue = new CarQueue();
-        ReservedCars = new ArrayList<ReservedCar>();
+        ReservedCars = new ArrayList<>();
         simulatorView = new SimulatorView(3, 6, 30, this);
     }
 
@@ -326,7 +325,7 @@ public class Simulator {
     }
 
     //Calculates the exta cars/minute during special occasions (theater for example)
-    public int getSpecialOccasionCars() {
+    private int getSpecialOccasionCars() {
         int cars = 0;
         Random random = new Random();
         if ((day == 4 &&  hour == 19) || (day == 5 && hour == 19) || (day == 6 && hour == 14)) {
@@ -336,28 +335,23 @@ public class Simulator {
         return cars;
     }
 
-    public CarQueue getQueue(String type) {
-
+    CarQueue getQueue(String type) {
         switch (type) {
             case "entranceCarQueue":
                 return entranceCarQueue;
-
             case "entrancePassQueue":
                 return entrancePassQueue;
-
             case "paymentCarQueue":
                 return paymentCarQueue;
-
             case "exitCarQueue":
                 return exitCarQueue;
-
         }
         return null;
     }
-    public int getMissedCustomers() {
+    int getMissedCustomers() {
         return missedCustomers;
     }
-    public String getTime() {
+    String getTime() {
         Map days = new HashMap<Integer, String>();
         days.put(0, "Monday");
         days.put(1, "Tuesday");
@@ -368,7 +362,7 @@ public class Simulator {
         days.put(6, "Sunday");
         return days.get(day) + "  " + hour + ":" + minute;
     }
-    public double getProfit() {
+    double getProfit() {
         return adhocprofit + passprofit + reservationprofit;
     }
 }
