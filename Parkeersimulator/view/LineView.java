@@ -12,9 +12,8 @@ import java.util.Random;
 public class LineView extends Garageview {
 
     private static ArrayList<Moment> values = new ArrayList<Moment>();
-    int o = 1;
-    private int interval = 10; //1 new point every 1 minute, 1 new point every 2 minutes if 2.. etc..
     private static int intervalcount = 0;
+    private int interval = 5; //1 new point every 1 minute, 1 new point every 2 minutes if 2.. etc..
 
     public LineView(SimulatorView simulatorView) {
         super(simulatorView, "LineView");
@@ -34,17 +33,19 @@ public class LineView extends Garageview {
         if (values.size() > 20) {
             values.remove(0);
         }
-        o++;
         repaint();
 
     }
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
         drawBase(g);
+        displayProfit(g);
+        displayType(g);
+        displayTime(g);
     }
     public void drawBase(Graphics g) {
         int x = 100;
-        int y = 600;
+        int y = 650;
         int height = 20; //in interval
         int width = 20; //in intervals
         int unitwidth = 50;
@@ -59,6 +60,10 @@ public class LineView extends Garageview {
 
         g.drawLine(x, y, x + unitwidth * width, y);
         g.drawLine(x, y, x, y + unitheight * height * -1);
+
+        //Draw interval graph info
+        g.drawString("Current interval is once every " + interval + " minutes", x, y + 50 );
+        g.drawString("Displaying total profit on the y-axis, time on the x-axis", x, y + 75);
 
         //Draw marks
         for (int i = 0; i <= width; i++) {
@@ -82,20 +87,23 @@ public class LineView extends Garageview {
             }
 
             if (previous != null) {
+                //Draw the line from the previous value to the current value
                 double yval = (moment.getValue() / maxvalue * height);
                 double prevyval = (previous.getValue() / maxvalue * height);
                 g.drawLine(x + (listindex - 1) * unitwidth, y - (int)(prevyval * unitheight), x + listindex * unitwidth, y - (int)(yval * unitheight));
 
+                g.fillOval(x + listindex * unitwidth - 2, y - (int)(yval * unitheight) - 2, 4, 4);
+                //Display time of value
                 String time = moment.getTime();
                 FontMetrics metrics = g.getFontMetrics(g.getFont());
                 int stringwidth = metrics.stringWidth(time);
                 g.drawString(time, (x + listindex * unitwidth) - stringwidth / 2, y + 25);
 
+                //Display value on point
                 String stringvalue = moment.getValue() + "";
                 metrics = g.getFontMetrics(g.getFont());
                 stringwidth = metrics.stringWidth(stringvalue);
-                g.drawString(stringvalue, (x + listindex * unitwidth) - stringwidth / 2, y - (int)yval * unitheight - 35);
-
+                g.drawString(stringvalue, (x + listindex * unitwidth + 12) - stringwidth / 2, y - (int)yval * unitheight + 12);
             }
             else {
                 g.drawLine(x + (listindex) * unitwidth, y, x + listindex * unitwidth * (listindex + 1), y - moment.getValue());
