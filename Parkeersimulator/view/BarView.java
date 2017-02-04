@@ -89,6 +89,10 @@ public class BarView extends Garageview {
     private void drawBar(int x, int y, Bar bar, Graphics g, int scale) {
         int barvalue = bar.getValue() / scale;
         int barwidth = bar.getWidth();
+        int maxvalue = getHeight() - 150;
+        if (barvalue > maxvalue) {
+            barvalue = maxvalue;
+        }
         y = y - barvalue;
         g.setColor(bar.getColor());
         g.fillRect(x, y, barwidth, barvalue);

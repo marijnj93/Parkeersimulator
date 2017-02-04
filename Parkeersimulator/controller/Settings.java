@@ -79,10 +79,11 @@ public class Settings extends Controller {
                     if (value < 0) {
                         JOptionPane.showMessageDialog(new JFrame(), "You can't enter negative numbers!");
                     }
+                    setValue(value);
                 } catch (NumberFormatException ex) {
                     JOptionPane.showMessageDialog(new JFrame(), "You can only enter numbers!");
                 }
-                setValue(value);
+
             });
         }
 
