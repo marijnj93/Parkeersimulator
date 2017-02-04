@@ -13,14 +13,24 @@ public class LineView extends Garageview {
 
     private static ArrayList<Moment> values = new ArrayList<Moment>();
     int o = 1;
+    private int interval = 10; //1 new point every 1 minute, 1 new point every 2 minutes if 2.. etc..
+    private static int intervalcount = 0;
+
     public LineView(SimulatorView simulatorView) {
         super(simulatorView, "LineView");
-        values.add(new Moment(0, simulatorView.getTime()));
+        if (values.isEmpty()) {
+            values.add(new Moment(0, simulatorView.getTime()));
+        }
     }
     public void updateView() {
+        intervalcount++;
         Random random = new Random();
         double newval = simulatorView.getProfit("TOTAL");
-        values.add(new Moment((int)newval / 100, simulatorView.getShortTime()));
+        if (intervalcount == interval) {
+            values.add(new Moment((int)newval / 100, simulatorView.getShortTime()));
+            intervalcount = 0;
+        }
+
         if (values.size() > 20) {
             values.remove(0);
         }
@@ -34,11 +44,11 @@ public class LineView extends Garageview {
     }
     public void drawBase(Graphics g) {
         int x = 100;
-        int y = 650;
-        int height = 20; //in minutes
-        int width = 20;
+        int y = 600;
+        int height = 20; //in interval
+        int width = 20; //in intervals
         int unitwidth = 50;
-        int unitheight = 30;
+        int unitheight = 25;
         double maxvalue = 0;
 
         for (Moment moment : values) {
@@ -48,7 +58,7 @@ public class LineView extends Garageview {
         }
 
         g.drawLine(x, y, x + unitwidth * width, y);
-        g.drawLine(x, y, x, y + unitwidth * height * -1);
+        g.drawLine(x, y, x, y + unitheight * height * -1);
 
         //Draw marks
         for (int i = 0; i <= width; i++) {
@@ -74,7 +84,7 @@ public class LineView extends Garageview {
             if (previous != null) {
                 double yval = (moment.getValue() / maxvalue * height);
                 double prevyval = (previous.getValue() / maxvalue * height);
-                g.drawLine(x + (listindex - 1) * unitwidth, y - (int)prevyval * unitheight, x + listindex * unitwidth, y - (int)yval * unitheight);
+                g.drawLine(x + (listindex - 1) * unitwidth, y - (int)(prevyval * unitheight), x + listindex * unitwidth, y - (int)(yval * unitheight));
 
                 String time = moment.getTime();
                 FontMetrics metrics = g.getFontMetrics(g.getFont());
@@ -84,7 +94,7 @@ public class LineView extends Garageview {
                 String stringvalue = moment.getValue() + "";
                 metrics = g.getFontMetrics(g.getFont());
                 stringwidth = metrics.stringWidth(stringvalue);
-                g.drawString(stringvalue, (x + listindex * unitwidth) - stringwidth / 2, y - (int)yval * unitheight - 25);
+                g.drawString(stringvalue, (x + listindex * unitwidth) - stringwidth / 2, y - (int)yval * unitheight - 35);
 
             }
             else {
