@@ -21,7 +21,7 @@ public class Parkeergarage {
     /**
      * Create a new parkeergarage.
      */
-    public Parkeergarage() {
+    private Parkeergarage() {
         simulator = new Simulator();
         view = new LineView(simulator.getSimulatorView());
         simulator.getSimulatorView().setView(view);

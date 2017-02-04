@@ -89,7 +89,7 @@ public class SimulatorView {
      * @param car, A car.
      * @return boolean
      */
-    public boolean setCarAt(Location location, Car car) {
+    boolean setCarAt(Location location, Car car) {
         if (!locationIsValid(location)) {
             return false;
         }
@@ -108,7 +108,7 @@ public class SimulatorView {
      * @param location, A location to remove a car.
      * @return car, a car.
      */
-    public Car removeCarAt(Location location) {
+    Car removeCarAt(Location location) {
         if (!locationIsValid(location)) {
             return null;
         }
@@ -126,7 +126,7 @@ public class SimulatorView {
      *
      * @return location, The first location that is free.
      */
-    public Location getFirstFreeLocation() {
+    Location getFirstFreeLocation() {
         for (int floor = 0; floor < getNumberOfFloors(); floor++) {
             for (int row = 0; row < getNumberOfRows(); row++) {
                 for (int place = 0; place < getNumberOfPlaces(); place++) {
@@ -139,7 +139,7 @@ public class SimulatorView {
         }
         return null;
     }
-    public Location getFirstReservedLocation() {
+    Location getFirstReservedLocation() {
         for (int floor = 0; floor < getNumberOfFloors(); floor++) {
             for (int row = 0; row < getNumberOfRows(); row++) {
                 for (int place = 0; place < getNumberOfPlaces(); place++) {
@@ -157,7 +157,7 @@ public class SimulatorView {
      *
      * @return car
      */
-    public Car getFirstLeavingCar() {
+    Car getFirstLeavingCar() {
         for (int floor = 0; floor < getNumberOfFloors(); floor++) {
             for (int row = 0; row < getNumberOfRows(); row++) {
                 for (int place = 0; place < getNumberOfPlaces(); place++) {
@@ -172,7 +172,7 @@ public class SimulatorView {
         return null;
     }
 
-    public void tick() {
+    void tick() {
         for (int floor = 0; floor < getNumberOfFloors(); floor++) {
             for (int row = 0; row < getNumberOfRows(); row++) {
                 for (int place = 0; place < getNumberOfPlaces(); place++) {
@@ -206,7 +206,6 @@ public class SimulatorView {
      * @param type
      * @return total
      */
-
     public int getTotalCars(String type) {
         int total = 0;
         Color color;
@@ -236,8 +235,7 @@ public class SimulatorView {
      * @param loc2
      * @return closest
      */
-
-    public Location calculateClosestLocation(Location loc1, Location loc2) {
+    Location calculateClosestLocation(Location loc1, Location loc2) {
         Location closest = null;
         if (loc1.getFloor() < loc2.getFloor()) {
             closest = loc1;
@@ -259,7 +257,6 @@ public class SimulatorView {
      * @param type
      * @return profit
      */
-
     public double getProfit(String type) {
        return simulator.getProfit(type);
     }

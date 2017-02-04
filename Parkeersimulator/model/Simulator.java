@@ -434,7 +434,7 @@ public class Simulator {
      * @return The total profit.
      * @param type, the type of profit.
      */
-    public double getProfit(String type) {
+    double getProfit(String type) {
         switch (type) {
             case "AD_HOC":
                 return adhocprofit;
