@@ -9,9 +9,9 @@ import java.awt.*;
  * @version 03-02-2017
  */
 public abstract class View extends JPanel{
-    protected SimulatorView simulatorView;
-    protected String type;
-    public View(SimulatorView simulatorView, String type) {
+    SimulatorView simulatorView;
+    String type;
+    View(SimulatorView simulatorView, String type) {
         this.simulatorView = simulatorView;
         this.type = type;
     }
@@ -19,7 +19,6 @@ public abstract class View extends JPanel{
     public String getType() {
         return type;
     }
-
 
     /**
      * Overridden. Tell the GUI manager how big we would like to be.

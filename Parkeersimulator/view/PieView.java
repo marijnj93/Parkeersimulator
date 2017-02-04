@@ -13,7 +13,7 @@ import java.util.ArrayList;
  */
 public class PieView extends Garageview {
     private Dimension size;
-    private ArrayList<Slice> slices = new ArrayList<Slice>();
+    private ArrayList<Slice> slices = new ArrayList<>();
     private int totalvalue = 0;
 
     /**
@@ -45,7 +45,7 @@ public class PieView extends Garageview {
         drawChart(g);
     }
 
-    public void drawChart(Graphics g) {
+    private void drawChart(Graphics g) {
         int width = 300;
         int height = 300;
         int x = getWidth() / 2 - (width / 2);
@@ -96,21 +96,21 @@ public class PieView extends Garageview {
         private Color color;
         private String name;
 
-        public Slice(int value, Color color, String name) {
+        Slice(int value, Color color, String name) {
             this.value = value;
             this.color = color;
             this.name = name;
         }
-        public int getValue() {
+        int getValue() {
             return value;
         }
-        public String getName() {
+        String getName() {
             return name;
         }
         public Color getColor() {
             return color;
         }
-        public void setValue(int value) {
+        void setValue(int value) {
             this.value = value;
         }
     }

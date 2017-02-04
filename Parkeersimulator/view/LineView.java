@@ -7,11 +7,12 @@ import java.util.ArrayList;
 import java.util.Random;
 
 /**
- * Created by Jeronimo on 2/3/2017.
+ * @author Marijn, Mark, Vincent, Bart,
+ * @version 04-02-2017
  */
 public class LineView extends Garageview {
 
-    private static ArrayList<Moment> values = new ArrayList<Moment>();
+    private static ArrayList<Moment> values = new ArrayList<>();
     private static int intervalcount = 0;
     private int interval = 5; //1 new point every 1 minute, 1 new point every 2 minutes if 2.. etc..
 
@@ -43,7 +44,7 @@ public class LineView extends Garageview {
         displayType(g);
         displayTime(g);
     }
-    public void drawBase(Graphics g) {
+    private void drawBase(Graphics g) {
         int x = 100;
         int y = 650;
         int height = 20; //in interval
@@ -115,16 +116,16 @@ public class LineView extends Garageview {
         return new Dimension(1200, 800);
     }
     private class Moment {
-        private int value;;
+        private int value;
         private String time;
-        public Moment(int value, String time) {
+        Moment(int value, String time) {
             this.value = value;
             this.time = time;
         }
-        public int getValue() {
+        int getValue() {
             return value;
         }
-        public String getTime() {
+        String getTime() {
             return time;
         }
     }
