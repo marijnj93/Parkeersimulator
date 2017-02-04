@@ -63,9 +63,9 @@ public class Simulator {
     public void setWeekDayPassArrivals(int val) {weekendPassArrivals = val;}
     public void setWeekendPassArrivals(int val) {weekendPassArrivals = val;}
     public void setEnterSpeed(int val) {enterSpeed = val;}
-    public void setPaymentSpeed(int val) {paymentSpeed = val;}
-    public void setExitSpeed(int val) {exitSpeed = val;}
+    public void setParkingPasses(int val) {PassHolders = val;}
     public void setTickPause(int val) {tickPause = val;}
+    public void setReservations(int val) { newReservations = val;}
 
     /**
      * Constructor to create a new simulator.
@@ -321,7 +321,7 @@ public class Simulator {
                 carswaiting = entranceCarQueue.carsInQueue();
             }
             double x = Math.random();
-            double skipchance =  0.8 * (double) carswaiting;
+            double skipchance =  1 * (double) carswaiting;
 
             if (x <= (skipchance / 100)) {
                 missedCustomers++;

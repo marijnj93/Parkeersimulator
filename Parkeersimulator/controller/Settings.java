@@ -26,9 +26,11 @@ public class Settings extends Controller {
 
         ArrayList<Option> options = new ArrayList<>();
         options.add(new Option("Enter speed: ", "enterSpeed"));
-        options.add(new Option("Exit speed: : ", "exitSpeed"));
-        options.add(new Option("Payment speed: : ", "paymentSpeed"));
         options.add(new Option("Simulator speed : ", "tickPause"));
+        options.add(new Option("Parking passes : ", "parkingPasses"));
+        options.add(new Option("Reservations/hour : ", "reservationAmount"));
+        options.add(new Option("Regular cars/hour : ", "regularCarsAmount"));
+        options.add(new Option("Pass holders/hour : ", "passCarsAmount"));
 
         for (Option option : options) {
             option.display();
@@ -72,8 +74,11 @@ public class Settings extends Controller {
                 int value = 0;
                 try {
                     value = Integer.parseInt(txt_Input.getText());
+                    if (value < 0) {
+                        JOptionPane.showMessageDialog(new JFrame(), "You can't enter negative numbers!");
+                    }
                 } catch (NumberFormatException ex) {
-                    JOptionPane.showMessageDialog(new JFrame(), "Input only numbers");
+                    JOptionPane.showMessageDialog(new JFrame(), "You can only enter numbers!");
                 }
                 setValue(value);
             });
@@ -98,14 +103,22 @@ public class Settings extends Controller {
                 case "enterSpeed":
                     simulator.setEnterSpeed(value);
                     break;
-                case "exitSpeed":
-                    simulator.setExitSpeed(value);
-                    break;
-                case "paymentSpeed":
-                    simulator.setPaymentSpeed(value);
-                    break;
                 case "tickPause":
                     simulator.setTickPause(value);
+                    break;
+                case "parkingPasses":
+                    simulator.setParkingPasses(value);
+                    break;
+                case "reservationAmount":
+                    simulator.setReservations(value);
+                    break;
+                case "regularCarsAmount":
+                    simulator.setWeekDayArrivals(value / 2);
+                    simulator.setWeekendArrivals(value);
+                    break;
+                case "passCarsAmount":
+                    simulator.setWeekDayPassArrivals(value );
+                    simulator.setWeekendPassArrivals(value / 2);
                     break;
             }
         }
