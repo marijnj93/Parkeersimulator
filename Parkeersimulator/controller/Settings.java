@@ -31,7 +31,9 @@ public class Settings extends Controller {
         options.add(new Option("Reservations/hour : ", "reservationAmount"));
         options.add(new Option("Regular cars/hour : ", "regularCarsAmount"));
         options.add(new Option("Pass holders/hour : ", "passCarsAmount"));
-
+        options.add(new Option("Floors:  ", "setFloors"));
+        options.add(new Option("Rows:  ", "setRows"));
+        options.add(new Option("Places:  ", "setPlaces"));
         for (Option option : options) {
             option.display();
         }
@@ -119,6 +121,15 @@ public class Settings extends Controller {
                 case "passCarsAmount":
                     simulator.setWeekDayPassArrivals(value );
                     simulator.setWeekendPassArrivals(value / 2);
+                    break;
+                case "setFloors":
+                    simulator.changeMap("Floors", value);
+                    break;
+                case "setRows":
+                    simulator.changeMap("Rows", value);
+                    break;
+                case "setPlaces":
+                    simulator.changeMap("Places", value);
                     break;
             }
         }

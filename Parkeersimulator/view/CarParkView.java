@@ -72,7 +72,6 @@ public class CarParkView extends Garageview {
                     else {
                         color = car.getColor();
                     }
-                    //Color color = car == null ? Color.white : car.getColor();
                     drawPlace(graphics, location, color);
                 }
             }
@@ -88,8 +87,11 @@ public class CarParkView extends Garageview {
      */
     private void drawPlace(Graphics graphics, Location location, Color color) {
         graphics.setColor(color);
+
+        int rowgap = 20;
+        int floorwidth = simulatorView.getNumberOfRows() * 20 + simulatorView.getNumberOfRows() * rowgap ;
         graphics.fillRect(
-                location.getFloor() * 260 + (1 + (int) Math.floor(location.getRow() * 0.5)) * 75 + (location.getRow() % 2) * 20,
+                (location.getFloor() * floorwidth) + (1 + (int) Math.floor(location.getRow() * 0.5)) * 75 + (location.getRow() % 2) * rowgap,
                 60 + location.getPlace() * 10,
                 20 - 1,
                 10 - 1); // TODO use dynamic size or constants

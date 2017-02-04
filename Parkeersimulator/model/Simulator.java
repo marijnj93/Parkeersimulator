@@ -67,6 +67,7 @@ public class Simulator {
     public void setTickPause(int val) {tickPause = val;}
     public void setReservations(int val) { newReservations = val;}
 
+
     /**
      * Constructor to create a new simulator.
      */
@@ -425,10 +426,15 @@ public class Simulator {
         days.put(6, "Sunday");
         return days.get(day) + "  " + hour + ":" + minute;
     }
-    //Returns a shorter version of the time for use in linegraph.
+
+    /**
+     * Get a short version of the time - without the day infront of it.
+     * @return Time in the form of a string.
+     */
     String getShortTime() {
         return hour + ":" + minute;
     }
+
     /**
      * Get the total profit by combining the profit from: adhoc, pass and reserving cars.
      * @return The total profit.
@@ -446,6 +452,21 @@ public class Simulator {
                 return adhocprofit + passprofit + reservationprofit;
         }
         return 0.0;
-
+    }
+    /**
+     * Set the floors, rows or places of the map
+     * @param type, the aspect of the map to change.
+     * @param value, the value to set the aspect of the map to.
+     */
+    public void changeMap(String type, int value) {
+        switch (type) {
+            case "Floors":
+                simulatorView = new SimulatorView(value, simulatorView.getNumberOfRows(),simulatorView.getNumberOfPlaces() , this);
+            case "Rows":
+                simulatorView = new SimulatorView(simulatorView.getNumberOfFloors(), value, simulatorView.getNumberOfPlaces(), this);
+                break;
+            case "Places":
+                simulatorView = new SimulatorView(simulatorView.getNumberOfFloors(), simulatorView.getNumberOfRows(), value, this);
+        }
     }
 }
