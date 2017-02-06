@@ -25,15 +25,15 @@ public class Settings extends Controller {
         setBorder(BorderFactory.createEmptyBorder(50, 50, 100, 100));
 
         ArrayList<Option> options = new ArrayList<>();
-        options.add(new Option("Enter speed: ", "enterSpeed"));
-        options.add(new Option("Simulator speed : ", "tickPause"));
-        options.add(new Option("Parking passes : ", "parkingPasses"));
-        options.add(new Option("Reservations/hour : ", "reservationAmount"));
-        options.add(new Option("Regular cars/hour : ", "regularCarsAmount"));
-        options.add(new Option("Pass holders/hour : ", "passCarsAmount"));
-        options.add(new Option("Floors:  ", "setFloors"));
-        options.add(new Option("Rows:  ", "setRows"));
-        options.add(new Option("Places:  ", "setPlaces"));
+        options.add(new Option("Enter speed: ", "enterSpeed", -1));
+        options.add(new Option("Simulator speed : ", "tickPause", -1));
+        options.add(new Option("Parking passes : ", "parkingPasses", -1));
+        options.add(new Option("Reservations/hour : ", "reservationAmount", -1));
+        options.add(new Option("Regular cars/hour : ", "regularCarsAmount", -1));
+        options.add(new Option("Pass holders/hour : ", "passCarsAmount", -1));
+        options.add(new Option("Floors:  ", "setFloors", 1000));
+        options.add(new Option("Rows:  ", "setRows", 1000));
+        options.add(new Option("Places:  ", "setPlaces", 1000));
         for (Option option : options) {
             option.display();
         }
@@ -60,17 +60,20 @@ public class Settings extends Controller {
         private JTextField txt_Input;
         private JButton btn_Submit;
         private String variable;
+        private int maxValue = 0;
+
 
         /**
          * Constructor to create a new option with a name and description.
          * @param Description, The description of a setting (label).
          * @param variable, The name of a specific setting
          */
-        Option(String Description, String variable) {
+        Option(String Description, String variable, int maxValue) {
             lbl_Description = new JLabel(Description);
             txt_Input = new JTextField();
             btn_Submit = new JButton("Set");
             this.variable = variable;
+            this.maxValue = maxValue;
 
             btn_Submit.addActionListener(e -> {
                 int value = 0;
@@ -79,7 +82,12 @@ public class Settings extends Controller {
                     if (value < 0) {
                         JOptionPane.showMessageDialog(new JFrame(), "You can't enter negative numbers!");
                     }
-                    setValue(value);
+                    else if (value > maxValue && maxValue != -1) { // -1 means no maxValue
+                        JOptionPane.showMessageDialog(new JFrame(), "Enter a number under " + maxValue);
+                    }
+                    else {
+                        setValue(value);
+                    }
                 } catch (NumberFormatException ex) {
                     JOptionPane.showMessageDialog(new JFrame(), "You can only enter numbers!");
                 }
