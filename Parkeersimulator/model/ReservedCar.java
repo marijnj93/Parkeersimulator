@@ -16,7 +16,7 @@ public class ReservedCar extends Car
     private boolean arrived = false;
 
     /**
-     * Contructor for a ReservedCar.
+     * Constructor for a ReservedCar.
      * @param time, The time a car has reserved a place.
      */
     ReservedCar(int time) {
@@ -35,7 +35,7 @@ public class ReservedCar extends Car
     }
 
     /**
-     * ...
+     * Run the actions of a ReservedCar.
      */
     @Override
     public void tick() {
@@ -49,8 +49,7 @@ public class ReservedCar extends Car
 
     /**
      * Check if a ReservedCar has arrived at his reserved place.
-     * @return true if a ReservedCar has at his reserved place
-     * ?.....
+     * @return true, if a ReservedCar has arrived at his reserved place.
      */
     private boolean checkIfArrived() {
         return waitTime < 1;
