@@ -64,7 +64,13 @@ public class Menu extends Controller implements ActionListener {
             int steps;
             try {
                 steps = Integer.parseInt(showInputDialog("Amount of minutes to run: "));
-                new RunWorker(simulator, steps, this).execute();
+                if (steps > 0) {
+                    new RunWorker(simulator, steps, this).execute();
+                }
+                else {
+                    JOptionPane.showMessageDialog(new JFrame(), "Please enter a value greater than 0");
+                }
+
             } catch (NumberFormatException ex) {
                 JOptionPane.showMessageDialog(new JFrame(), "Input only numbers");
             }
