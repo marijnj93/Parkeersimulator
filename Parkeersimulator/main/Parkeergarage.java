@@ -87,11 +87,14 @@ public class Parkeergarage {
      * Switch to the change settings view.
      */
     public void changeSettings() {
-        frame.remove(view);
-        settings = new Settings(simulator, this);
-        frame.getContentPane().add(settings, BorderLayout.CENTER);
-        frame.revalidate();
-        frame.pack();
-        simulator.getSimulatorView().updateView();
+
+        if (!settings.isDisplayable()) {
+            frame.remove(view);
+            settings = new Settings(simulator, this);
+            frame.getContentPane().add(settings, BorderLayout.CENTER);
+            frame.revalidate();
+            frame.pack();
+            simulator.getSimulatorView().updateView();
+        }
     }
 }
