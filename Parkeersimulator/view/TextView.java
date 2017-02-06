@@ -18,7 +18,7 @@ public class TextView extends View {
     private ArrayList<JLabel> labels;
 
     /**
-     * Contructor of TextView.
+     * Constructor of TextView.
      * @param simulatorView, The simulatorView to use for the TextView.
      */
     public TextView(SimulatorView simulatorView) {
