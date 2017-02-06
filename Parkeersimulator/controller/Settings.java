@@ -100,7 +100,6 @@ public class Settings extends Controller {
          * Set the inputted value of the setting for the simulator.
          * @param value, The value entered by a user to adjust the simulator.
          */
-        //Roep de juiste setter aan aan de hand van de in de constructor meegegeven variabele "variabele"
         void setValue(int value) {
             switch(variable) {
                 case "enterSpeed":
