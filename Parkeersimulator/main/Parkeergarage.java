@@ -11,7 +11,7 @@ import javax.swing.*;
  * @author Marijn, Mark, Vincent, Bart,
  * @version 03-02-2017
  */
-//Maak dit misschien een JFrame (extending)
+
 public class Parkeergarage {
     private Simulator simulator;
     private View view;
@@ -19,7 +19,7 @@ public class Parkeergarage {
     private JFrame frame;
 
     /**
-     * Create a new parkeergarage.
+     * Creates a new parkeergarage.
      */
     private Parkeergarage() {
         simulator = new Simulator();
@@ -40,14 +40,14 @@ public class Parkeergarage {
     }
 
     /**
-     * Start the simulator.
+     * Starts the simulator.
      */
     public static void main(String[] args) {
         new Parkeergarage();
     }
 
     /**
-     * Change the view of the simulator.
+     * Changes the view of the simulator.
      */
     public void changeView() {
         if (view.isDisplayable()) {
@@ -89,7 +89,6 @@ public class Parkeergarage {
     public void changeSettings() {
         frame.remove(view);
         settings = new Settings(simulator, this);
-        //simulator.getSimulatorView().setView(settings);
         frame.getContentPane().add(settings, BorderLayout.CENTER);
         frame.revalidate();
         frame.pack();
