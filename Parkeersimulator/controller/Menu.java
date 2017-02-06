@@ -21,7 +21,7 @@ public class Menu extends Controller implements ActionListener {
     private Boolean runWorkerRunning = false;
 
     /**
-     * Create a menu.
+     * Constructor to create a menu.
      * @param simulator, A simulator to use in the menu.
      * @param parkeergarage, A parkeergarage to use in the menu.
      */
@@ -82,7 +82,7 @@ public class Menu extends Controller implements ActionListener {
 
     /**
      * Sets a boolean to check if a RunWorker is running.
-     * @param bool, true if a RunWorker is running, else false.
+     * @param bool, true if a RunWorker is running, false if not running.
      */
     void setWorkerRunning(Boolean bool) {
         runWorkerRunning = bool;
@@ -102,7 +102,7 @@ class RunWorker extends SwingWorker<Void, Void>
     private Menu menu;
 
     /**
-     * Create a RunWorker.
+     * Constructor to create a RunWorker.
      * @param simulator, A simulator to run.
      * @param steps, how many ticks/steps a simulator must run.
      * @param menu, The menu containing buttons.

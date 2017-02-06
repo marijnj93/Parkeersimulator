@@ -40,7 +40,7 @@ public class Parkeergarage {
     }
 
     /**
-     * This is used to start the program.
+     * Start the simulator.
      */
     public static void main(String[] args) {
         new Parkeergarage();

@@ -12,7 +12,7 @@ public class Location {
     private int place;
     private Boolean reserved = false;
     /**
-     * Constructor for objects of class Location
+     * Constructor of class Location.
      * @param floor The floor of a location.
      * @param row The row of a location.
      * @param place The place of a location.

@@ -18,7 +18,7 @@ public class SimulatorView {
     private Simulator simulator;
 
     /**
-     *
+     * Constructor of class SimulatorView.
      * @param numberOfFloors, The number of floors.
      * @param numberOfRows, the number of rows.
      * @param numberOfPlaces, the number of places.
@@ -32,15 +32,24 @@ public class SimulatorView {
         cars = new Car[numberOfFloors][numberOfRows][numberOfPlaces];
 
     }
+
+    /**
+     * Set a view.
+     * @param view, A view to set.
+     */
     public void setView(View view) {
         this.view = view;
     }
+
+    /**
+     * Update the view.
+     */
     public void updateView() {
         view.updateView();
     }
 
     /**
-     *
+     * Get the numberOfFloors.
      * @return numberOfFloors, The number of floors.
      */
 	public int getNumberOfFloors() {
@@ -48,7 +57,7 @@ public class SimulatorView {
     }
 
     /**
-     *
+     * Get the numberOfRows.
      * @return numberOfRows, The number of rows.
      */
     public int getNumberOfRows() {
@@ -56,7 +65,7 @@ public class SimulatorView {
     }
 
     /**
-     *
+     * Get the getNumberOfPlaces.
      * @return numberOfPlaces, The number of places.
      */
     public int getNumberOfPlaces() {
@@ -64,7 +73,7 @@ public class SimulatorView {
     }
 
     /**
-     *
+     * Get the numberOfOpenSpots.
      * @return numberOfOpenSpots, The number of open spots.
      */
     int getNumberOfOpenSpots(){
@@ -72,7 +81,7 @@ public class SimulatorView {
     }
 
     /**
-     *
+     * Get a car at the specified location.
      * @param location, the location of a car.
      * @return cars, with the floor, row and place
      */
@@ -84,7 +93,7 @@ public class SimulatorView {
     }
 
     /**
-     *
+     * Set a car at the specified location.
      * @param location, A location to set a car.
      * @param car, A car.
      * @return boolean
@@ -104,7 +113,7 @@ public class SimulatorView {
     }
 
     /**
-     *
+     * Remove a car at the specified location.
      * @param location, A location to remove a car.
      * @return car, a car.
      */
@@ -123,7 +132,7 @@ public class SimulatorView {
     }
 
     /**
-     *
+     * Get the first free location.
      * @return location, The first location that is free.
      */
     Location getFirstFreeLocation() {
@@ -139,6 +148,11 @@ public class SimulatorView {
         }
         return null;
     }
+
+    /**
+     * Get the first reserved location.
+     * @return location, A reserved location.
+     */
     Location getFirstReservedLocation() {
         for (int floor = 0; floor < getNumberOfFloors(); floor++) {
             for (int row = 0; row < getNumberOfRows(); row++) {
@@ -154,8 +168,8 @@ public class SimulatorView {
     }
 
     /**
-     *
-     * @return car
+     * Get a car that has no time left to stay parked.
+     * @return car, A car that has no time left to stay parked.
      */
     Car getFirstLeavingCar() {
         for (int floor = 0; floor < getNumberOfFloors(); floor++) {
@@ -172,6 +186,9 @@ public class SimulatorView {
         return null;
     }
 
+    /**
+     * Loop over each parked car, and run the tick method of a car.
+     */
     void tick() {
         for (int floor = 0; floor < getNumberOfFloors(); floor++) {
             for (int row = 0; row < getNumberOfRows(); row++) {
@@ -187,29 +204,26 @@ public class SimulatorView {
     }
 
     /**
-     *
+     * Check if a location is valid.
      * @param location, A valid location.
-     * @return boolean
+     * @return true, if a location exists.
      */
     private boolean locationIsValid(Location location) {
         int floor = location.getFloor();
         int row = location.getRow();
         int place = location.getPlace();
-        if (floor < 0 || floor >= numberOfFloors || row < 0 || row > numberOfRows || place < 0 || place > numberOfPlaces) {
-            return false;
-        }
-        return true;
+        return !(floor < 0 || floor >= numberOfFloors || row < 0 || row > numberOfRows || place < 0 || place > numberOfPlaces);
     }
 
     /**
-     *
-     * @param type
-     * @return total
+     * Get the total number of cars.
+     * @param type, The type of car.
+     * @return total, The total number of cars.
      */
     public int getTotalCars(String type) {
         int total = 0;
         Color color;
-        if (type == "AD_HOC") {
+        if (type.equals("AD_HOC")) {
             color = Color.red;
         }
         else {
@@ -230,13 +244,13 @@ public class SimulatorView {
     }
 
     /**
-     *
-     * @param loc1
-     * @param loc2
-     * @return closest
+     * Calculate and find the closest location between 2 locations.
+     * @param loc1, A location.
+     * @param loc2 The location to compare the first location to.
+     * @return closest, the closest location.
      */
     Location calculateClosestLocation(Location loc1, Location loc2) {
-        Location closest = null;
+        Location closest;
         if (loc1.getFloor() < loc2.getFloor()) {
             closest = loc1;
         }
@@ -253,32 +267,41 @@ public class SimulatorView {
     }
 
     /**
-     *
-     * @param type
-     * @return profit
+     * Get the profit.
+     * @param type, the type of profit.
+     * @return profit, the profit.
      */
     public double getProfit(String type) {
        return simulator.getProfit(type);
     }
 
     /**
-     *
-     * @param type
-     * @return queue
+     * Get the queue with a specified type.
+     * @param type, The type of queue.
+     * @return queue, A queue.
      */
-
     public CarQueue getQueue(String type) {
         return simulator.getQueue(type);
     }
 
     /**
-     *
+     * Get the missed customers.
      * @return missed customers
      */
     public int getMissedCustomers() {
         return simulator.getMissedCustomers();
     }
+
+    /**
+     * Get the time.
+     * @return The time.
+     */
     public String getTime() {return simulator.getTime();}
+
+    /**
+     * Get the time in a short notation.
+     * @return The time in a short notation.
+     */
     public String getShortTime() {
         return simulator.getShortTime();
     }

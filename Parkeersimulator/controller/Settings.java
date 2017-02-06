@@ -16,7 +16,7 @@ public class Settings extends Controller {
     /**
      * Create settings with options.
      * @param simulator, A simulator.
-     * @param parkeergarage , A parkeergarage
+     * @param parkeergarage, A parkeergarage
      */
     public Settings(Simulator simulator, Parkeergarage parkeergarage )  {
         super(simulator, parkeergarage);
@@ -45,7 +45,7 @@ public class Settings extends Controller {
 
     /**
      * Overridden. Tell the GUI manager how big we would like to be.
-     * @return The dimension of the GUI.
+     * @return A new dimension with width 1200, height 500.
      */
     public Dimension getPreferredSize() {
         repaint();
@@ -62,7 +62,7 @@ public class Settings extends Controller {
         private String variable;
 
         /**
-         *
+         * Constructor to create a new option with a name and description.
          * @param Description, The description of a setting (label).
          * @param variable, The name of a specific setting
          */
@@ -88,7 +88,7 @@ public class Settings extends Controller {
         }
 
         /**
-         * Display input fields, descriptions and a submit button.
+         * Display descriptions, input fields, and a submit button.
          */
         void display() {
             add(lbl_Description);
