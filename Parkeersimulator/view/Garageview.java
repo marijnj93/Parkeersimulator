@@ -10,6 +10,11 @@ import java.awt.*;
  */
 abstract class Garageview extends View {
 
+    /**
+     *
+     * @param simulatorView, a SimulatorView
+     * @param type, The type of a view.
+     */
     Garageview(SimulatorView simulatorView, String type) {
         super(simulatorView, type);
     }
@@ -19,6 +24,11 @@ abstract class Garageview extends View {
         g.setColor(Color.black);
         g.drawString(simulatorView.getTime(), 20, 20);
     }
+
+    /**
+     * Display the profit.
+     * @param g, A graphics object.
+     */
     void displayProfit(Graphics g) {
         g.setColor(Color.white);
         g.fillRect(0, 40, 130, 30);
@@ -26,6 +36,11 @@ abstract class Garageview extends View {
         int profit = (int)simulatorView.getProfit("TOTAL") / 100;
         g.drawString("Total profit: $" + (profit), 20, 60); //Profit is in centen, dus delen door 100
     }
+
+    /**
+     * Display the type of a view.
+     * @param g, A graphics object.
+     */
     void displayType(Graphics g) {
         Font oldfont = g.getFont();
         g.setColor(Color.black);

@@ -7,7 +7,7 @@ import java.awt.*;
 import java.util.ArrayList;
 
 /**
- *
+ * A PieView (circle diagram).
  * @author Marijn, Mark, Vincent, Bart,
  * @version 03-02-2017
  */
@@ -35,7 +35,10 @@ public class PieView extends Garageview {
         updateView();
     }
 
-
+    /**
+     * Display the time, profit, type, and chart.
+     * @param g, A graphics object.
+     */
     public void paintComponent(Graphics g) {
         //De super, (JPanel) moet ook getekend worden (?)
         super.paintComponent(g);
@@ -44,7 +47,10 @@ public class PieView extends Garageview {
         displayType(g);
         drawChart(g);
     }
-
+    /**
+     * Draw the chart.
+     * @param g, A graphics object.
+     */
     private void drawChart(Graphics g) {
         int width = 300;
         int height = 300;
@@ -75,7 +81,9 @@ public class PieView extends Garageview {
     }
 
 
-
+    /**
+     * Update the view.
+     */
     public void updateView() {
         totalvalue = simulatorView.getNumberOfPlaces() * simulatorView.getNumberOfFloors() * simulatorView.getNumberOfRows();
         for (Slice slice:slices) {
@@ -91,25 +99,51 @@ public class PieView extends Garageview {
         }
         repaint();
     }
+
     private class Slice {
         private int value;
         private Color color;
         private String name;
 
+        /**
+         * Constructor to create a slice.
+         * @param value, The value of a slice.
+         * @param color, The color of a slice.
+         * @param name, The name of a slice.
+         */
         Slice(int value, Color color, String name) {
             this.value = value;
             this.color = color;
             this.name = name;
         }
+
+        /**
+         * Get the value of a slice.
+         * @return value, The value of a slice.
+         */
         int getValue() {
             return value;
         }
+
+        /**
+         * Get the name of a slice.
+         * @return name, The name of a slice.
+         */
         String getName() {
             return name;
         }
+        /**
+         * Get the color of a slice.
+         * @return color, The color of a slice.
+         */
         public Color getColor() {
             return color;
         }
+
+        /**
+         * Set a value.
+         * @param value, The value to set.
+         */
         void setValue(int value) {
             this.value = value;
         }

@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.Random;
 
 /**
+ * A lineview.
  * @author Marijn, Mark, Vincent, Bart,
  * @version 04-02-2017
  */
@@ -16,12 +17,20 @@ public class LineView extends Garageview {
     private static int intervalcount = 0;
     private int interval = 5; //1 new point every 1 minute, 1 new point every 2 minutes if 2.. etc..
 
+    /**
+     * Constructor of LineView.
+     * @param simulatorView, a SimulatorView.
+     */
     public LineView(SimulatorView simulatorView) {
         super(simulatorView, "LineView");
         if (values.isEmpty()) {
             values.add(new Moment(0, simulatorView.getTime()));
         }
     }
+
+    /**
+     * Update the view.
+     */
     public void updateView() {
         intervalcount++;
         Random random = new Random();
@@ -37,6 +46,11 @@ public class LineView extends Garageview {
         repaint();
 
     }
+
+    /**
+     * Display the background, profit, type, and time.
+     * @param g, A graphics object.
+     */
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
         drawBase(g);
@@ -44,6 +58,11 @@ public class LineView extends Garageview {
         displayType(g);
         displayTime(g);
     }
+
+    /**
+     * Draw the background.
+     * @param g, A graphics object.
+     */
     private void drawBase(Graphics g) {
         int x = 100;
         int y = 650;
@@ -111,6 +130,11 @@ public class LineView extends Garageview {
             }
         }
     }
+
+    /**
+     * Overridden. Tell the GUI manager how big we would like to be.
+     * @return The dimension of the GUI.
+     */
     @Override
     public Dimension getPreferredSize() {
         return new Dimension(1200, 800);
@@ -118,13 +142,29 @@ public class LineView extends Garageview {
     private class Moment {
         private int value;
         private String time;
+
+        /**
+         * Constructor of Moment.
+         * @param value, The value of a moment.
+         * @param time, The time of a moment.
+         */
         Moment(int value, String time) {
             this.value = value;
             this.time = time;
         }
+
+        /**
+         * Get the value of a moment.
+         * @return value, The value of a moment.
+         */
         int getValue() {
             return value;
         }
+
+        /**
+         * Get the time of a moment.
+         * @return time, The time of a moment.
+         */
         String getTime() {
             return time;
         }

@@ -15,7 +15,6 @@ public class CarParkView extends Garageview {
     private Dimension size;
     private Image carParkImage;
 
-
     /**
      * Constructor for objects of class CarPark
      * @param simulatorView A simulatorView.
@@ -29,7 +28,7 @@ public class CarParkView extends Garageview {
     /**
      * Overridden. The car park view component needs to be redisplayed. Copy the
      * internal image to screen.
-     * @param g
+     * @param g, A graphics object.
      */
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
@@ -50,6 +49,9 @@ public class CarParkView extends Garageview {
         displayType(g);
     }
 
+    /**
+     * Update the view.
+     */
     public void updateView() {
         // Create a new car park image if the size has changed.
         if (!size.equals(getSize())) {
@@ -81,7 +83,7 @@ public class CarParkView extends Garageview {
 
     /**
      * Paint a place on this car park view in a given color.
-     * @param graphics,
+     * @param graphics, A graphics object
      * @param location, The location to paint at.
      * @param color, The color that is used.
      */
@@ -96,6 +98,11 @@ public class CarParkView extends Garageview {
                 20 - 1,
                 10 - 1); // TODO use dynamic size or constants
     }
+
+    /**
+     * Draw a legend.
+     * @param g, A graphics object.
+     */
     private void drawLegenda(Graphics g) {
 
         int x = getWidth() - 350;

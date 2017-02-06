@@ -293,10 +293,10 @@ public class Simulator {
     }
 
     /**
-     *
-     * @param weekDay
-     * @param weekend
-     * @return The number of cars per hour / 60
+     * Calculate the number of cars arriving.
+     * @param weekDay, The average number of cars in a weekday.
+     * @param weekend, The average number of cars in the weekend.
+     * @return Calculate the number of cars arriving in this tick.
      */
     private int getNumberOfCars(int weekDay, int weekend, String type){
         Random random = new Random();
